@@ -71,6 +71,9 @@ public class GoogleCalendarCreator extends AppCompatActivity {
     }
 
     private void makeBetterEvent(int x){
+        events = MainActivity.getmService().events();
+
+
         String minute = String.format(Locale.getDefault(),"%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.MINUTE));
         String hour  = String.format(Locale.getDefault(),"%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.HOUR_OF_DAY));
         String day = String.format(Locale.getDefault(),"%02d", CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -86,7 +89,29 @@ public class GoogleCalendarCreator extends AppCompatActivity {
                 second+""+
                 "+00:00";
 
-        DateTime calendarAdd = DateTime.parseRfc3339(datemaker);
+
+
+
+        Event event = new Event()
+                .setSummary(CalendarEventManager.calendars.get(x).getTitle())
+                .setDescription(CalendarEventManager.calendars.get(x).getNotes());
+        DateTime calendarStart = DateTime.parseRfc3339(datemaker);
+        EventDateTime start = new EventDateTime()
+                .setDateTime(calendarStart)
+                //TODO: you need to do something about the timezones
+                .setTimeZone("America/Los_Angeles");
+        event.setStart(start);
+                //TODO: you need to add an end time
+        DateTime calendarEnd= new DateTime("2018-05-28T17:00:00-07:00");
+        EventDateTime end = new EventDateTime()
+                .setDateTime(calendarEnd)
+                .setTimeZone("America/Los_Angeles");
+        event.setEnd(end);
+
+
+
+
+
         //DateTime calendarEnd = DateTime.parseRfc3339(endDateMaker);
 
         Calendar getCalendar = CalendarEventManager.calendars.get(x).getCalendar();
