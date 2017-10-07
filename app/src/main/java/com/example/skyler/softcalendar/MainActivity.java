@@ -61,7 +61,7 @@ public class MainActivity extends Activity
 
     private static final String BUTTON_TEXT = "Call Google Calendar API";
     private static final String PREF_ACCOUNT_NAME = "accountName";
-    private static final String[] SCOPES = { CalendarScopes.CALENDAR_READONLY };
+    private static final String[] SCOPES = { CalendarScopes.CALENDAR };
 
     /**
      * Create the main activity.
@@ -344,6 +344,7 @@ public class MainActivity extends Activity
          */
         @Override
         protected List<String> doInBackground(Void... params) {
+
             try {
                 return getDataFromApi();
             } catch (Exception e) {

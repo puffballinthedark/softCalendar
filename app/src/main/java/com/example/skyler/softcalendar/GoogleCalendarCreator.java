@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 
 import com.google.api.client.util.DateTime;
+import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventReminder;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -22,8 +24,23 @@ public class GoogleCalendarCreator extends AppCompatActivity {
     com.google.api.services.calendar.Calendar.Events events =null;
     Event event = new Event();
 
+    private class shit extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... params){
+            whoAuthorizedThis();
+
+            return null;
+        }
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        shit ohgod = new shit();
+        ohgod.execute();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_calendar_creator);
 
@@ -91,55 +108,67 @@ public class GoogleCalendarCreator extends AppCompatActivity {
         TextView notesBox = (TextView) findViewById(R.id.notesBox);
         notesBox.setText(CalendarEventManager.calendars.get(x).getNotes() + datemaker+"");
 
-        events = MainActivity.getmService().events();
-
-
-        DateTime startDateTime = new DateTime("2017-10-01T09:00:00-07:00");
-        DateTime endDateTime = new DateTime("2017-10-01T17:00:00-07:00");
-
-
-        event = new Event()
-                .setLocation("Dhaka")
-                .setDescription("New Event 1")
-                .setSummary("Google I/O 2015");
-
-        EventDateTime start = new EventDateTime()
-                .setDateTime(startDateTime)
-                .setTimeZone("America/Los_Angeles");
-
-        event.setStart(start);
-        EventDateTime end = new EventDateTime()
-                .setDateTime(endDateTime)
-                .setTimeZone("America/Los_Angeles");
-        String[] recurrence = new String[] {"RRULE:FREQ=NEVER;COUNT=0"};
-        event.setRecurrence(Arrays.asList(recurrence));
-        Event.Reminders reminders = new Event.Reminders()
-                .setUseDefault(true);
-        event.setReminders(reminders);
-        event.setEnd(end);
 
 
 
-        class TestAsync extends AsyncTask<Void, Integer, String>{
-            @Override
-            protected String doInBackground(Void... params) {
-                try {
-                    events.insert("primary", event).execute();
-                }catch(IOException e){
-                }
-                return null;
-            }
-        }
-        new TestAsync().execute();
+
     }
-
-
-
-
-
 
     public void goToMainForm(){
         Intent intent = new Intent (this, MainForm.class);
         this.startActivity(intent);
     }
+
+    private void whoAuthorizedThis(){
+        events = MainActivity.getmService().events();
+
+
+        Event event = new Event()
+            .setSummary("Google I/O 2015")
+            .setLocation("800 Howard St., San Francisco, CA 94103")
+            .setDescription("A chance to hear more about Google's developer products.");
+
+        DateTime startDateTime = new DateTime("2017-05-28T09:00:00-07:00");
+        EventDateTime start = new EventDateTime()
+                .setDateTime(startDateTime)
+                .setTimeZone("America/Los_Angeles");
+        event.setStart(start);
+
+        DateTime endDateTime = new DateTime("2017-05-28T17:00:00-07:00");
+        EventDateTime end = new EventDateTime()
+                .setDateTime(endDateTime)
+                .setTimeZone("America/Los_Angeles");
+        event.setEnd(end);
+
+        String[] recurrence = new String[]{"RRULE:FREQ=DAILY;COUNT=2"};
+        event.setRecurrence(Arrays.asList(recurrence));
+
+        EventAttendee[] attendees = new EventAttendee[]{
+                new EventAttendee().setEmail("lpage@example.com"),
+                new EventAttendee().setEmail("sbrin@example.com"),
+        };
+        event.setAttendees(Arrays.asList(attendees));
+
+        EventReminder[] reminderOverrides = new EventReminder[]{
+                new EventReminder().setMethod("email").setMinutes(24 * 60),
+                new EventReminder().setMethod("popup").setMinutes(10),
+        };
+        Event.Reminders reminders = new Event.Reminders()
+                .setUseDefault(false)
+                .setOverrides(Arrays.asList(reminderOverrides));
+        event.setReminders(reminders);
+
+        String calendarId = "primary";
+
+        try {
+            events.insert(calendarId, event).execute();
+        } catch (IOException e) {
+        }
+
+        System.out.printf("Event created: %s\n", event.getHtmlLink());
+
+    }
+
+
+
 }
