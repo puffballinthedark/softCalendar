@@ -17,11 +17,11 @@ import com.google.api.services.calendar.model.EventReminder;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 
 
 public class GoogleCalendarCreator extends AppCompatActivity {
-    com.google.api.services.calendar.Calendar.Events events =null;
-    Event event = new Event();
+    com.google.api.services.calendar.Calendar.Events events = null;
 
     private class backgroundTask extends AsyncTask<Void, Void, Void>{
         @Override
@@ -31,51 +31,20 @@ public class GoogleCalendarCreator extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        backgroundTask background = new backgroundTask();
-        background.execute();
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google_calendar_creator);
-
         final int x = getIntent().getIntExtra("i", 0);
 
-        String minute = String.format("%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.MINUTE));
-        String hour  = String.format("%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.HOUR_OF_DAY));
-        String day = String.format("%02d", CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.DAY_OF_MONTH));
-        String month = String.format("%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.MONTH));
-        String second = String.format("%02d", CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.SECOND));
-
-        String datemaker =  CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.YEAR) + "-"+
-        month+"-"+
-        day +
-        "T"+
-        hour +":"+
-        minute+":"+
-        second+""+
-        "+00:00";
-
-        String endDateMaker = CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.YEAR) + "-"+
-        month+"-"+
-        day +
-        "T"+
-        hour +":"+
-        minute+":"+
-        second+""+
-        "+00:00";
-
-        DateTime calendarAdd = DateTime.parseRfc3339(datemaker);
-        DateTime calendarEnd = DateTime.parseRfc3339(endDateMaker);
+        setContentView(R.layout.activity_google_calendar_creator);
+        makeBetterEvent(x);
 
 
         Button addToCalendar = (Button) findViewById(R.id.addToCalendarButton);
         addToCalendar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                backgroundTask calendarAdd = new backgroundTask();
+                calendarAdd.execute();
                 goToMainForm();
             }
         });
@@ -86,6 +55,7 @@ public class GoogleCalendarCreator extends AppCompatActivity {
                 goToMainForm();
             }
         });
+
         Button delete = (Button) findViewById(R.id.DeleteButton);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -93,28 +63,44 @@ public class GoogleCalendarCreator extends AppCompatActivity {
                 goToMainForm();
             }
         });
-
-        Calendar getCalendar = CalendarEventManager.calendars.get(x).getCalendar();
-
-        TextView dateBox = (TextView) findViewById(R.id.dateBox);
-        dateBox.setText((getCalendar.get(Calendar.MONTH)+" / "+
-                         getCalendar.get(Calendar.DAY_OF_MONTH) + " / " +
-                         getCalendar.get(Calendar.YEAR)));
-        TextView timeBox = (TextView) findViewById(R.id.timeBox);
-        timeBox.setText((getCalendar.get(Calendar.HOUR)+ ":"+
-                         minute));
-        TextView notesBox = (TextView) findViewById(R.id.notesBox);
-        notesBox.setText(CalendarEventManager.calendars.get(x).getNotes() + datemaker+"");
-
-
-
-
-
     }
 
     public void goToMainForm(){
         Intent intent = new Intent (this, MainForm.class);
         this.startActivity(intent);
+    }
+
+    private void makeBetterEvent(int x){
+        String minute = String.format(Locale.getDefault(),"%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.MINUTE));
+        String hour  = String.format(Locale.getDefault(),"%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.HOUR_OF_DAY));
+        String day = String.format(Locale.getDefault(),"%02d", CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.DAY_OF_MONTH));
+        String month = String.format(Locale.getDefault(),"%02d",CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.MONTH));
+        String second = String.format(Locale.getDefault(),"%02d", CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.SECOND));
+
+        String datemaker =  CalendarEventManager.calendars.get(x).getCalendar().get(Calendar.YEAR) + "-"+
+                month+"-"+
+                day +
+                "T"+
+                hour +":"+
+                minute+":"+
+                second+""+
+                "+00:00";
+
+        DateTime calendarAdd = DateTime.parseRfc3339(datemaker);
+        //DateTime calendarEnd = DateTime.parseRfc3339(endDateMaker);
+
+        Calendar getCalendar = CalendarEventManager.calendars.get(x).getCalendar();
+
+        TextView dateBox = (TextView) findViewById(R.id.dateBox);
+        dateBox.setText((getCalendar.get(Calendar.MONTH)+" / "+
+                getCalendar.get(Calendar.DAY_OF_MONTH) + " / " +
+                getCalendar.get(Calendar.YEAR)));
+        TextView timeBox = (TextView) findViewById(R.id.timeBox);
+        timeBox.setText((getCalendar.get(Calendar.HOUR)+ ":"+
+                minute));
+        TextView notesBox = (TextView) findViewById(R.id.notesBox);
+        notesBox.setText(CalendarEventManager.calendars.get(x).getNotes() + datemaker+"");
+
     }
 
     private void makeEvent(){
