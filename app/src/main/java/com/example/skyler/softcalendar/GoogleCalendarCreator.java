@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
@@ -24,11 +23,10 @@ public class GoogleCalendarCreator extends AppCompatActivity {
     com.google.api.services.calendar.Calendar.Events events =null;
     Event event = new Event();
 
-    private class shit extends AsyncTask<Void, Void, Void>{
+    private class backgroundTask extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... params){
-            whoAuthorizedThis();
-
+            makeEvent();
             return null;
         }
     }
@@ -38,8 +36,8 @@ public class GoogleCalendarCreator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        shit ohgod = new shit();
-        ohgod.execute();
+        backgroundTask background = new backgroundTask();
+        background.execute();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_calendar_creator);
@@ -119,7 +117,7 @@ public class GoogleCalendarCreator extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    private void whoAuthorizedThis(){
+    private void makeEvent(){
         events = MainActivity.getmService().events();
 
 
