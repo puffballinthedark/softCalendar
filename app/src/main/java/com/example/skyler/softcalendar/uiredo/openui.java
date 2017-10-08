@@ -13,15 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.skyler.softcalendar.CreateEvent;
 import com.example.skyler.softcalendar.R;
 
+import org.w3c.dom.Text;
+
 public class openui extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String userEmail = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        userEmail = getIntent().getStringExtra("userEmail");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_openui);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -52,6 +60,13 @@ public class openui extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.openui, menu);
+
+        TextView userNameTextView = (TextView) findViewById(R.id.textViewUserName);
+        userNameTextView.setText("shit");
+        TextView userIDTextview = (TextView) findViewById(R.id.textViewEmail);
+        userIDTextview.setText(userEmail);
+
+
         return true;
     }
 

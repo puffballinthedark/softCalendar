@@ -34,6 +34,7 @@ public class GoogleCalendarCreator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final int x = getIntent().getIntExtra("i", 0);
+
         setContentView(R.layout.activity_google_calendar_creator);
 
 

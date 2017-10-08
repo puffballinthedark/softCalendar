@@ -1,5 +1,6 @@
 package com.example.skyler.softcalendar;
 
+import com.example.skyler.softcalendar.uiredo.openui;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -424,8 +425,9 @@ public class MainActivity extends Activity
     }
 
         private void goToMainForm(){
-        Intent hey = new Intent(this, MainForm.class);
-        startActivity(hey);
+            Intent intent = new Intent(this, openui.class);
+            intent.putExtra("userEmail", mCredential.getSelectedAccountName());
+            startActivity(intent);
     }
     public static com.google.api.services.calendar.Calendar getmService(){
         return mService;
