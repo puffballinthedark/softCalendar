@@ -1,5 +1,6 @@
 package com.example.skyler.softcalendar.uiredo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.skyler.softcalendar.CreateEvent;
 import com.example.skyler.softcalendar.R;
 
 public class openui extends AppCompatActivity
@@ -74,18 +76,17 @@ public class openui extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_calendarEvents) {
+            Intent intent = new Intent(this, calendarEventsForm.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_hourEvents) {
+            Intent intent = new Intent(this, hourEventsForm.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_checklist) {
+            Intent intent = new Intent(this, checklistForm.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
