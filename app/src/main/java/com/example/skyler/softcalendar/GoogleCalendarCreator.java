@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.api.client.util.DateTime;
-import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventReminder;
@@ -23,10 +22,10 @@ import java.util.Locale;
 public class GoogleCalendarCreator extends AppCompatActivity {
     com.google.api.services.calendar.Calendar.Events events = null;
 
-    private class backgroundTask extends AsyncTask<Void, Void, Void>{
+    private class backgroundTask extends AsyncTask<Integer, Void, Void>{
         @Override
-        protected Void doInBackground(Void... params){
-            makeEvent();
+        protected Void doInBackground(Integer... x){
+            makeBetterEvent(x[0]);
             return null;
         }
     }
@@ -35,16 +34,14 @@ public class GoogleCalendarCreator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final int x = getIntent().getIntExtra("i", 0);
-
         setContentView(R.layout.activity_google_calendar_creator);
-        makeBetterEvent(x);
 
 
         Button addToCalendar = (Button) findViewById(R.id.addToCalendarButton);
         addToCalendar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 backgroundTask calendarAdd = new backgroundTask();
-                calendarAdd.execute();
+                calendarAdd.execute((Integer)x);
                 goToMainForm();
             }
         });
@@ -90,27 +87,46 @@ public class GoogleCalendarCreator extends AppCompatActivity {
                 "+00:00";
 
 
-
-
         Event event = new Event()
-                .setSummary(CalendarEventManager.calendars.get(x).getTitle())
+                .setSummary("oh christ")
                 .setDescription(CalendarEventManager.calendars.get(x).getNotes());
         DateTime calendarStart = DateTime.parseRfc3339(datemaker);
         EventDateTime start = new EventDateTime()
                 .setDateTime(calendarStart)
                 //TODO: you need to do something about the timezones
                 .setTimeZone("America/Los_Angeles");
+
         event.setStart(start);
+
                 //TODO: you need to add an end time
         DateTime calendarEnd= new DateTime("2018-05-28T17:00:00-07:00");
         EventDateTime end = new EventDateTime()
                 .setDateTime(calendarEnd)
                 .setTimeZone("America/Los_Angeles");
+
         event.setEnd(end);
 
+        String[] recurrence = new String[]{"RRULE:FREQ=DAILY;COUNT=1"};
 
+        event.setRecurrence(Arrays.asList(recurrence));
 
+        EventReminder[] reminderOverrides = new EventReminder[]{
+                new EventReminder().setMethod("popup").setMinutes(10),
+        };
 
+        Event.Reminders reminders = new Event.Reminders()
+                .setUseDefault(false)
+                .setOverrides(Arrays.asList(reminderOverrides));
+        event.setReminders(reminders);
+
+        String calendarId = "primary";
+
+        try {
+            events.insert(calendarId, event).execute();
+        } catch (IOException e) {
+        }
+
+/*
 
         //DateTime calendarEnd = DateTime.parseRfc3339(endDateMaker);
 
@@ -124,57 +140,7 @@ public class GoogleCalendarCreator extends AppCompatActivity {
         timeBox.setText((getCalendar.get(Calendar.HOUR)+ ":"+
                 minute));
         TextView notesBox = (TextView) findViewById(R.id.notesBox);
-        notesBox.setText(CalendarEventManager.calendars.get(x).getNotes() + datemaker+"");
-
-    }
-
-    private void makeEvent(){
-        events = MainActivity.getmService().events();
-
-
-        Event event = new Event()
-            .setSummary("Google I/O 2015")
-            .setLocation("800 Howard St., San Francisco, CA 94103")
-            .setDescription("A chance to hear more about Google's developer products.");
-
-        DateTime startDateTime = new DateTime("2017-05-28T09:00:00-07:00");
-        EventDateTime start = new EventDateTime()
-                .setDateTime(startDateTime)
-                .setTimeZone("America/Los_Angeles");
-        event.setStart(start);
-
-        DateTime endDateTime = new DateTime("2017-05-28T17:00:00-07:00");
-        EventDateTime end = new EventDateTime()
-                .setDateTime(endDateTime)
-                .setTimeZone("America/Los_Angeles");
-        event.setEnd(end);
-
-        String[] recurrence = new String[]{"RRULE:FREQ=DAILY;COUNT=2"};
-        event.setRecurrence(Arrays.asList(recurrence));
-
-        EventAttendee[] attendees = new EventAttendee[]{
-                new EventAttendee().setEmail("lpage@example.com"),
-                new EventAttendee().setEmail("sbrin@example.com"),
-        };
-        event.setAttendees(Arrays.asList(attendees));
-
-        EventReminder[] reminderOverrides = new EventReminder[]{
-                new EventReminder().setMethod("email").setMinutes(24 * 60),
-                new EventReminder().setMethod("popup").setMinutes(10),
-        };
-        Event.Reminders reminders = new Event.Reminders()
-                .setUseDefault(false)
-                .setOverrides(Arrays.asList(reminderOverrides));
-        event.setReminders(reminders);
-
-        String calendarId = "primary";
-
-        try {
-            events.insert(calendarId, event).execute();
-        } catch (IOException e) {
-        }
-
-        System.out.printf("Event created: %s\n", event.getHtmlLink());
+        notesBox.setText(CalendarEventManager.calendars.get(x).getNotes() + datemaker+""); */
 
     }
 
