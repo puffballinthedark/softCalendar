@@ -24,10 +24,12 @@ public class openui extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String userEmail = "";
+    String userName= "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         userEmail = getIntent().getStringExtra("userEmail");
+        userName = getIntent().getStringExtra("userName");
 
 
         super.onCreate(savedInstanceState);
@@ -62,7 +64,7 @@ public class openui extends AppCompatActivity
         getMenuInflater().inflate(R.menu.openui, menu);
 
         TextView userNameTextView = (TextView) findViewById(R.id.textViewUserName);
-        userNameTextView.setText("shit");
+        userNameTextView.setText(userName);
         TextView userIDTextview = (TextView) findViewById(R.id.textViewEmail);
         userIDTextview.setText(userEmail);
 

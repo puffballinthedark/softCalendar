@@ -5,11 +5,11 @@
         <item
             android:id="@+id/nav_calendarEvents"
             android:icon="@drawable/ic_calendar_plus"
-            android:title="Created Events" />
+            android:title="Calendar Events" />
         <item
             android:id="@+id/nav_hourEvents"
             android:icon ="@drawable/ic_calendar_clock"
-            android:title="Created Hour Blocks" />
+            android:title="Hour Blocks" />
         <item
             android:id="@+id/nav_checklist"
             android:icon="@drawable/ic_list_black_24dp"
