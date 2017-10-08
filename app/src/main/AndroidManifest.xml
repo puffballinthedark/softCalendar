@@ -44,9 +44,28 @@
             android:name=".uiredo.openui"
             android:label="@string/title_activity_openui"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".uiredo.calendarEventsForm" />
-        <activity android:name=".uiredo.hourEventsForm" />
-        <activity android:name=".uiredo.checklistForm"></activity>
+
+
+        <activity android:name=".uiredo.calendarEventsForm"
+            android:parentActivityName="com.example.skyler.softcalendar.uiredo.openui">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.skyler.softcalendar.uiredo.openui" />
+        </activity>
+
+        <activity android:name=".uiredo.hourEventsForm"
+            android:parentActivityName="com.example.skyler.softcalendar.uiredo.openui">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.skyler.softcalendar.uiredo.openui" />
+        </activity>
+
+        <activity android:name=".uiredo.checklistForm"
+            android:parentActivityName="com.example.skyler.softcalendar.uiredo.openui">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.skyler.softcalendar.uiredo.openui" />
+        </activity>
     </application>
 
 </manifest>
