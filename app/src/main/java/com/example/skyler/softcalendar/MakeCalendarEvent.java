@@ -19,6 +19,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
+import com.google.api.client.util.DateTime;
+
+import java.util.Locale;
 
 public class MakeCalendarEvent extends AppCompatActivity implements View.OnClickListener{
 
@@ -26,6 +29,13 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
     private TextView startTime, startDate, endTime, endDate;
     private EditText title, notes;
     private Button cancel, save;
+
+    private int startHourOfDay, endHourOfDay, startMinute, endMinute;
+    private String StartDate, EndDate;
+    private String StartTime, EndTime;
+
+
+
     CalendarEvent calendar = new CalendarEvent();
 
 
@@ -44,14 +54,16 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
         startDate = (TextView) findViewById(R.id.textViewStartDate);
         endTime = (TextView) findViewById(R.id.textViewEndTime);
         endDate = (TextView) findViewById(R.id.textViewEndDate);
-
+        title = (EditText) findViewById(R.id.editTextTitle);
+        notes = (EditText) findViewById(R.id.editTextNotes);
 
 
         startTime.setOnClickListener(this);
         startDate.setOnClickListener(this);
         endTime.setOnClickListener(this);
         endDate.setOnClickListener(this);
-
+        cancel.setOnClickListener(this);
+        save.setOnClickListener(this);
     }
 
     @Override
@@ -69,8 +81,13 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
+                            String cleanHour = String.format(Locale.getDefault(),"%02d", hourOfDay);
+                            String cleanMinute = String.format(Locale.getDefault(),"%02d", minute);
 
+                            StartTime = cleanHour + ":" + cleanMinute + ":" + "00" + "+00:00";
                             startTime.setText(hourOfDay + ":" + minute);
+
+
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -90,6 +107,13 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
                                               int minute) {
 
                             endTime.setText(hourOfDay + ":" + minute);
+                            //TODO: I think the +00:00 is the time offset, which you need to get eventually.
+                            String cleanHour = String.format(Locale.getDefault(),"%02d", hourOfDay);
+                            String cleanMinute = String.format(Locale.getDefault(),"%02d", minute);
+
+
+                            EndTime = cleanHour + ":" + cleanMinute + ":" + "00" + "+00:00";
+
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -112,6 +136,10 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
                                               int monthOfYear, int dayOfMonth) {
                             startDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
+                            String cleanDay = String.format(Locale.getDefault(),"%02d", dayOfMonth);
+                            String cleanMonth = String.format(Locale.getDefault(),"%02d", monthOfYear+1);
+
+                            StartDate = year + "-" + cleanMonth + "-" + cleanDay + "T";
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -132,17 +160,21 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
                             endDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
+                            String cleanDay = String.format(Locale.getDefault(),"%02d", dayOfMonth);
+                            String cleanMonth = String.format(Locale.getDefault(),"%02d", monthOfYear +1);
+                            EndDate = ( year + "-" + cleanMonth + "-" + cleanDay + "T");
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
 
         }
         if (v == save){
-
-
+            calendar.setTitle(title.getText().toString());
+            calendar.setNotes(notes.getText().toString());
+            calendar.setStart(DateTime.parseRfc3339(StartDate + StartTime));
+            calendar.setEnd(DateTime.parseRfc3339(EndDate + EndTime));
         }
-        if (v ==cancel){
+        if (v == cancel){
             goBack();
         }
     }
