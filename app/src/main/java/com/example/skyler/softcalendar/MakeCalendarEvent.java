@@ -30,9 +30,9 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
     private EditText title, notes;
     private Button cancel, save;
 
-    private int startHourOfDay, endHourOfDay, startMinute, endMinute;
     private String StartDate, EndDate;
     private String StartTime, EndTime;
+
 
 
 
@@ -41,10 +41,13 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_calendar_event2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final Calendar c = Calendar.getInstance();
 
 
         cancel = (Button) findViewById(R.id.buttonCancel);
@@ -56,6 +59,18 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
         endDate = (TextView) findViewById(R.id.textViewEndDate);
         title = (EditText) findViewById(R.id.editTextTitle);
         notes = (EditText) findViewById(R.id.editTextNotes);
+
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+        startTime.setText(mHour + ":" + mMinute);
+        endTime.setText(mHour + ":" + mMinute);
+
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        startDate.setText(mDay + "-" + mMonth + "-" + mYear);
+        endDate.setText(mDay + "-" + mMonth + "-" + mYear);
+
 
 
         startTime.setOnClickListener(this);
@@ -111,9 +126,7 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
                             String cleanHour = String.format(Locale.getDefault(),"%02d", hourOfDay);
                             String cleanMinute = String.format(Locale.getDefault(),"%02d", minute);
 
-
                             EndTime = cleanHour + ":" + cleanMinute + ":" + "00" + "+00:00";
-
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -173,6 +186,7 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             calendar.setNotes(notes.getText().toString());
             calendar.setStart(DateTime.parseRfc3339(StartDate + StartTime));
             calendar.setEnd(DateTime.parseRfc3339(EndDate + EndTime));
+            goBack();
         }
         if (v == cancel){
             goBack();
