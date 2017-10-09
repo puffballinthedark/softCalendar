@@ -1,5 +1,6 @@
 package com.example.skyler.softcalendar.uiredo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,13 +8,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
+import com.example.skyler.softcalendar.CalendarAdapter;
+import com.example.skyler.softcalendar.CalendarEventManager;
 import com.example.skyler.softcalendar.MakeCalendarEvent;
 import com.example.skyler.softcalendar.R;
 
 public class calendarEventsForm extends AppCompatActivity{
 
-    private RecyclerView mRecyclerView;
+    RelativeLayout mRelativeLayout;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -21,12 +25,20 @@ public class calendarEventsForm extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_events_form);
+        Context mContext = getApplicationContext();
 
         RecyclerView rv = (RecyclerView)findViewById(R.id.recyclerViewCalendarEvent);
-        rv.setHasFixedSize(true);
 
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutCalendarEvents);
+
+
+        mAdapter = new CalendarAdapter(mContext, CalendarEventManager.calendars);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        rv.setAdapter(mAdapter);
+
         rv.setLayoutManager(mLayoutManager);
+
 
 
         setContentView(R.layout.activity_calendar_events_form);

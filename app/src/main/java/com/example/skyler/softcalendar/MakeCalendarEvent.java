@@ -191,6 +191,8 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             calendar.setStart(DateTime.parseRfc3339(StartDate + StartTime));
             calendar.setEnd(DateTime.parseRfc3339(EndDate + EndTime));
             goBack();
+            CalendarEventManager.addCalendarObject(calendar);
+
         }
         if (v == cancel){
             goBack();
