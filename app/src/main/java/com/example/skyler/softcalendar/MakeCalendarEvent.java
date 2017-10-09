@@ -43,6 +43,14 @@ public class MakeCalendarEvent extends AppCompatActivity {
             }
         });
         TextView startDate = (TextView) findViewById(R.id.textViewStartDate);
+        startDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                DialogFragment pickDate = datePickerFragment;
+                pickDate.show(getFragmentManager(),"TimePicker");
+            }
+        });
 
         TextView endTime = (TextView) findViewById(R.id.textViewEndTime);
         endTime.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +63,15 @@ public class MakeCalendarEvent extends AppCompatActivity {
             }
         });
         TextView endDate = (TextView) findViewById(R.id.textViewEndDate);
+        endDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                DialogFragment pickDate = datePickerFragment;
+                pickDate.show(getFragmentManager(),"TimePicker");
+                datePickerFragment.setEndStart(false);
+            }
+        });
     }
 
 

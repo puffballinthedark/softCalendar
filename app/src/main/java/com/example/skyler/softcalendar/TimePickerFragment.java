@@ -34,8 +34,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     //onTimeSet() callback method
     public void onTimeSet(TimePicker view, int hourOfDay, int minute){
-        //Do something with the user chosen time
-        //Get reference of host activity (XML Layout File) TextView widget
 
         if (endStart){
             TextView timeTextView = (TextView) getActivity().findViewById(R.id.textViewStartTime);
