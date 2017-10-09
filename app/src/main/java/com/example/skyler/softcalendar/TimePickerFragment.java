@@ -18,6 +18,10 @@ import android.widget.TimePicker;
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
     boolean endStart = false;
+    String timeStart  = "";
+    String timeEnd = "";
+    String dateStart = "";
+    String dateEnd = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -38,10 +42,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         if (endStart){
             TextView timeTextView = (TextView) getActivity().findViewById(R.id.textViewStartTime);
             timeTextView.setText(String.valueOf(hourOfDay) + ":" +String.valueOf(minute));
+
+            timeStart = String.valueOf(hourOfDay) + ":" +String.valueOf(minute);
         }
         else{
             TextView timeTextView = (TextView) getActivity().findViewById(R.id.textViewEndTime);
             timeTextView.setText(String.valueOf(hourOfDay) + ":" +String.valueOf(minute));
+            timeEnd = String.valueOf(hourOfDay) + ":" +String.valueOf(minute);
         }
 
 
@@ -50,5 +57,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void setEndStart (boolean x){
         endStart = x;
     }
+
+    public String getStartTime (){
+            return timeStart;
+        }
+    public String getEndTime(){
+            return timeEnd;
+        }
+
 
 }

@@ -8,14 +8,15 @@ public class CalendarEvent implements Serializable {
     private String title = "";
     private String notes = "";
     private DateTime start;
+    private DateTime end;
     private java.util.Calendar calendar;
     //TODO: you need to name calendar something that isn't fucking miserable oh my GOD
-
 
 
     public DateTime getStart(){
         return start;
     }
+    public DateTime getEnd(){return end;}
     public String getNotes(){
         return notes;
     }
@@ -27,6 +28,7 @@ public class CalendarEvent implements Serializable {
     public void setStart(DateTime x){
         start = x;
     }
+    public void setEnd (DateTime x) {end = x;}
     public void setNotes(String x){
         notes = x;
     }
