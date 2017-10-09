@@ -12,14 +12,33 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <Button
-            android:id="@+id/buttonCreateHourEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:text="make new hour event" />
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            tools:context=".MainActivity"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@+id/buttonCreateHourEvent"></android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/buttonCreateHourEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:text="make new hour event" />
+        </RelativeLayout>
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

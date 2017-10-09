@@ -33,9 +33,6 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
     private String StartDate, EndDate;
     private String StartTime, EndTime;
 
-
-
-
     CalendarEvent calendar = new CalendarEvent();
 
 
@@ -48,7 +45,6 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
         setSupportActionBar(toolbar);
 
         final Calendar c = Calendar.getInstance();
-
 
         cancel = (Button) findViewById(R.id.buttonCancel);
         save = (Button) findViewById(R.id.buttonSave);
@@ -71,7 +67,15 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
         startDate.setText(mDay + "-" + mMonth + "-" + mYear);
         endDate.setText(mDay + "-" + mMonth + "-" + mYear);
 
+        String cleanDay = String.format(Locale.getDefault(),"%02d", mDay);
+        String cleanMonth = String.format(Locale.getDefault(),"%02d", mMonth+1);
+        String cleanHour = String.format(Locale.getDefault(),"%02d", mHour);
+        String cleanMinute = String.format(Locale.getDefault(),"%02d", mMinute);
 
+        StartTime = cleanHour + ":" + cleanMinute + ":" + "00" + "+00:00";
+        StartDate = mYear + "-" + cleanMonth + "-" + cleanDay + "T";
+        EndTime = cleanHour + ":" + cleanMinute + ":" + "00" + "+00:00";
+        EndDate = mYear + "-" + cleanMonth + "-" + cleanDay + "T";
 
         startTime.setOnClickListener(this);
         startDate.setOnClickListener(this);
