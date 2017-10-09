@@ -22,11 +22,6 @@
             android:text="make new item on checklist"
             tools:text="create new item on checklist" />
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/button3" />
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>
