@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.R;
 
 public class calendarEventsForm extends AppCompatActivity{
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +23,12 @@ public class calendarEventsForm extends AppCompatActivity{
         RecyclerView rv = (RecyclerView)findViewById(R.id.recyclerViewCalendarEvent);
         rv.setHasFixedSize(true);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rv.setLayoutManager(llm);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        rv.setLayoutManager(mLayoutManager);
+
+       // mAdapter = new CardViewAdapter(data);
+        mRecyclerView.setAdapter(mAdapter);
+
+
     }
 }
