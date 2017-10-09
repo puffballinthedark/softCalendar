@@ -12,34 +12,35 @@ import android.widget.RelativeLayout;
 
 import com.example.skyler.softcalendar.CalendarAdapter;
 import com.example.skyler.softcalendar.CalendarEventManager;
+import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.MakeCalendarEvent;
 import com.example.skyler.softcalendar.R;
 
 public class calendarEventsForm extends AppCompatActivity{
 
     RelativeLayout mRelativeLayout;
+    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private static Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_events_form);
-        Context mContext = getApplicationContext();
-
-        RecyclerView rv = (RecyclerView)findViewById(R.id.recyclerViewCalendarEvent);
+        mContext = getApplicationContext();
 
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutCalendarEvents);
+        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerViewCalendarEvent);
 
+        mLayoutManager = new LinearLayoutManager(mContext);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new CalendarAdapter(mContext, CalendarEventManager.calendars);
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mAdapter = new CardViewAdapter(mContext,CalendarEventManager.calendars);
+        mRecyclerView.setAdapter(mAdapter);
 
-        rv.setAdapter(mAdapter);
-
-        rv.setLayoutManager(mLayoutManager);
-
-
+        mRecyclerView.setVisibility(View.VISIBLE);
 
         setContentView(R.layout.activity_calendar_events_form);
         Button createEvent = (Button) findViewById(R.id.buttonCreateEvent);

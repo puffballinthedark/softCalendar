@@ -333,9 +333,6 @@ public class MainActivity extends Activity
                     transport, jsonFactory, credential)
                     .setApplicationName("Google Calendar API Android Quickstart")
                     .build();
-
-
-
         }
 
 

@@ -23,16 +23,14 @@
             android:layout_marginBottom="8dp"
             android:layout_marginRight="3dp"
             android:text="make new calendar event"
-            app:layout_constraintBottom_toBottomOf="@+id/relativeLayoutCalendarEvents"
             app:layout_constraintRight_toRightOf="parent" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewCalendarEvent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/buttonCreateEvent" />
+            android:layout_above="@+id/buttonCreateEvent"
+            android:layout_alignParentTop="true" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
