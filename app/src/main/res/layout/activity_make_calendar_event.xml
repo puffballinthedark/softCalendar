@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/editTextTitle"
             android:layout_width="341dp"
             android:layout_height="53dp"
             android:layout_marginLeft="8dp"
@@ -31,12 +31,12 @@
             android:inputType="textPersonName"
             android:text="notes"
             android:layout_marginTop="28dp"
-            app:layout_constraintTop_toBottomOf="@+id/textBoxDate"
+            app:layout_constraintTop_toBottomOf="@+id/textViewEndTime"
             android:layout_marginLeft="-6dp"
-            app:layout_constraintLeft_toLeftOf="@+id/editText5" />
+            app:layout_constraintLeft_toLeftOf="@+id/editTextTitle" />
 
         <Button
-            android:id="@+id/ButtonCancel"
+            android:id="@+id/buttonCancel"
             android:layout_width="151dp"
             android:layout_height="47dp"
             android:layout_marginBottom="30dp"
@@ -55,35 +55,35 @@
             android:layout_height="0dp"
             android:layout_marginBottom="-14dp"
             android:text="save"
-            app:layout_constraintBottom_toBottomOf="@+id/ButtonCancel"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonCancel"
             android:layout_marginRight="27dp"
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
-            android:id="@+id/textBoxDate"
+            android:id="@+id/textViewEndTime"
             android:layout_width="129dp"
             android:layout_height="39dp"
             android:text="date"
             android:layout_marginTop="112dp"
-            app:layout_constraintTop_toBottomOf="@+id/editText5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
             android:layout_marginLeft="10dp"
-            app:layout_constraintLeft_toLeftOf="@+id/textView14"
+            app:layout_constraintLeft_toLeftOf="@+id/textViewStartTime"
             android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="@+id/textView14"
+            app:layout_constraintRight_toRightOf="@+id/textViewStartTime"
             app:layout_constraintHorizontal_bias="1.0" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/textViewStartTime"
             android:layout_width="130dp"
             android:layout_height="37dp"
             android:layout_marginLeft="7dp"
             android:layout_marginTop="51dp"
             android:text="date"
-            app:layout_constraintLeft_toLeftOf="@+id/editText5"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintLeft_toLeftOf="@+id/editTextTitle"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/textViewStartDate"
             android:layout_width="177dp"
             android:layout_height="35dp"
             android:layout_marginLeft="8dp"
@@ -91,9 +91,9 @@
             android:layout_marginTop="51dp"
             android:text="TextView"
             app:layout_constraintHorizontal_bias="0.593"
-            app:layout_constraintLeft_toRightOf="@+id/textBoxDate"
+            app:layout_constraintLeft_toRightOf="@+id/textViewEndTime"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
         <TextView
             android:id="@+id/textView5"
@@ -102,11 +102,11 @@
             android:text="TextView"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="@+id/textView15"
+            app:layout_constraintRight_toRightOf="@+id/textViewStartDate"
             android:layout_marginTop="112dp"
-            app:layout_constraintTop_toBottomOf="@+id/editText5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toRightOf="@+id/textBoxDate" />
+            app:layout_constraintLeft_toRightOf="@+id/textViewEndTime" />
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

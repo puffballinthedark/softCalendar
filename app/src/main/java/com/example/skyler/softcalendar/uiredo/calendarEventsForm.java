@@ -37,6 +37,7 @@ public class calendarEventsForm extends AppCompatActivity{
             }
         });}
 
+
     private void goToMakeEvent(){
         Intent intent = new Intent(this, MakeCalendarEvent.class);
         startActivity(intent);
