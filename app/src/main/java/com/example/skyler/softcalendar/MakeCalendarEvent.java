@@ -190,9 +190,8 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             calendar.setNotes(notes.getText().toString());
             calendar.setStart(DateTime.parseRfc3339(StartDate + StartTime));
             calendar.setEnd(DateTime.parseRfc3339(EndDate + EndTime));
-            goBack();
             CalendarEventManager.addCalendarObject(calendar);
-
+            goBack();
         }
         if (v == cancel){
             goBack();
