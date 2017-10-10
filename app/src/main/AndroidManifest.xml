@@ -72,10 +72,10 @@
 
         <activity
             android:name=".CalendarEventViewer"
-            android:parentActivityName=".MakeCalendarEvent">
+            android:parentActivityName=".uiredo.calendarEventsForm">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.skyler.softcalendar.MakeCalendarEvent" />
+                android:value="com.example.skyler.softcalendar.uiredo.calendarEventsForm" />
         </activity>
     </application>
 
