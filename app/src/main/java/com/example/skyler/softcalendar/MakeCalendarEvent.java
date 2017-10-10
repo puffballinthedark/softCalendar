@@ -90,6 +90,7 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             mMinute = c.get(Calendar.MINUTE);
 
             // Launch Time Picker Dialog
+            //TODO: you need to make sure that the start time and date aren't greater than the end time
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                     new TimePickerDialog.OnTimeSetListener() {
 

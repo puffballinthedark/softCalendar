@@ -18,10 +18,10 @@ import com.example.skyler.softcalendar.R;
 public class calendarEventsForm extends AppCompatActivity{
     private static Context mContext;
 
-    RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

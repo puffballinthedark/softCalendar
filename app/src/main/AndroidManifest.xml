@@ -51,8 +51,7 @@
         <activity
             android:name=".MakeCalendarEvent"
             android:label="@string/title_activity_make_calendar_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CalendarEventViewer"
             android:parentActivityName=".uiredo.calendarEventsForm">
@@ -60,6 +59,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.skyler.softcalendar.uiredo.calendarEventsForm" />
         </activity>
+        <activity
+            android:name=".HourEventViewer"
+            android:label="@string/title_activity_hour_event_viewer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MakeHourEvent"
+            android:label="@string/title_activity_make_hour_event"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

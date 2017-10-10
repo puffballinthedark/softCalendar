@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.skyler.softcalendar.CalendarEventViewer">
+    tools:context="com.example.skyler.softcalendar.HourEventViewer">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -60,10 +60,10 @@
                 android:id="@+id/hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="End Time"
+                android:layout_alignStart="@+id/textView4"
                 android:layout_below="@+id/textView4"
-                android:layout_alignStart="@+id/textView13" />
+                android:layout_marginTop="44dp"
+                android:text="Hour Length" />
 
             <TextView
                 android:id="@+id/startTime"
@@ -88,27 +88,10 @@
                 android:id="@+id/endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End Time"
                 android:layout_alignBaseline="@+id/hour"
                 android:layout_alignBottom="@+id/hour"
-                android:layout_alignStart="@+id/startTime" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:text="End Date"
-                android:layout_below="@+id/hour"
-                android:layout_alignStart="@+id/textView4" />
-
-            <TextView
-                android:id="@+id/endDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="End Date"
-                android:layout_above="@+id/notes"
-                android:layout_alignStart="@+id/endTime" />
+                android:layout_alignStart="@+id/startTime"
+                android:text="Hour Length" />
 
             <TextView
                 android:id="@+id/title"
@@ -125,11 +108,11 @@
                 android:id="@+id/notes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textView13"
-                android:layout_below="@+id/textView13"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="53dp"
                 android:textSize="32sp"
-                tools:text="Notes" />
+                tools:text="Notes"
+                android:layout_below="@+id/hour"
+                android:layout_alignStart="@+id/textView4" />
 
             <Button
                 android:id="@+id/addToCalendar"
@@ -137,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/endDate"
+                android:layout_toStartOf="@+id/endTime"
                 android:text="Add  to calendar" />
 
             <Button
@@ -147,9 +130,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toEndOf="@+id/addToCalendar"
-                android:text="delete" />
+                android:text="delete"
+                android:layout_alignStart="@+id/endTime" />
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
-
 
 </android.support.design.widget.CoordinatorLayout>
