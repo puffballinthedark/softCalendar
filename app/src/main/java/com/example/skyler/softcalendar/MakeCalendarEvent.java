@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
+import com.example.skyler.softcalendar.uiredo.CalendarEventsForm;
 import com.google.api.client.util.DateTime;
 
 import java.util.Locale;
@@ -196,7 +196,7 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
 
 
     private void goBack(){
-        Intent intent = new Intent(this, calendarEventsForm.class);
+        Intent intent = new Intent(this, CalendarEventsForm.class);
         startActivity(intent);
     }
 }

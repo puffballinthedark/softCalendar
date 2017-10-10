@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.skyler.softcalendar.R;
 
-public class openui extends AppCompatActivity
+public class MainForm extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     String userEmail = "";
@@ -88,15 +88,15 @@ public class openui extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_calendarEvents) {
-            Intent intent = new Intent(this, calendarEventsForm.class);
+            Intent intent = new Intent(this, CalendarEventsForm.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_hourEvents) {
-            Intent intent = new Intent(this, hourEventsForm.class);
+            Intent intent = new Intent(this, HourEventsForm.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_checklist) {
-            Intent intent = new Intent(this, checklistForm.class);
+            Intent intent = new Intent(this, ChecklistForm.class);
             startActivity(intent);
         }
 

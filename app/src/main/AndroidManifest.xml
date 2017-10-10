@@ -24,29 +24,29 @@
         </activity>
         <activity android:name=".CustomView" />
         <activity
-            android:name=".uiredo.openui"
+            android:name=".uiredo.MainForm"
             android:label="@string/title_activity_openui"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".uiredo.calendarEventsForm"
-            android:parentActivityName=".uiredo.openui">
+            android:name=".uiredo.CalendarEventsForm"
+            android:parentActivityName=".uiredo.MainForm">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.skyler.softcalendar.uiredo.openui" />
+                android:value="com.example.skyler.softcalendar.uiredo.MainForm" />
         </activity>
         <activity
-            android:name=".uiredo.hourEventsForm"
-            android:parentActivityName=".uiredo.openui">
+            android:name=".uiredo.HourEventsForm"
+            android:parentActivityName=".uiredo.MainForm">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.skyler.softcalendar.uiredo.openui" />
+                android:value="com.example.skyler.softcalendar.uiredo.MainForm" />
         </activity>
         <activity
-            android:name=".uiredo.checklistForm"
-            android:parentActivityName=".uiredo.openui">
+            android:name=".uiredo.ChecklistForm"
+            android:parentActivityName=".uiredo.MainForm">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.skyler.softcalendar.uiredo.openui" />
+                android:value="com.example.skyler.softcalendar.uiredo.MainForm" />
         </activity>
         <activity
             android:name=".MakeCalendarEvent"
@@ -55,10 +55,10 @@
 
         <activity
             android:name=".CalendarEventViewer"
-            android:parentActivityName=".uiredo.calendarEventsForm">
+            android:parentActivityName=".uiredo.CalendarEventsForm">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.skyler.softcalendar.uiredo.calendarEventsForm" />
+                android:value="com.example.skyler.softcalendar.uiredo.CalendarEventsForm" />
         </activity>
     </application>
 

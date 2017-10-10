@@ -1,7 +1,6 @@
 package com.example.skyler.softcalendar;
 
-import com.example.skyler.softcalendar.uiredo.openui;
-import com.google.android.gms.auth.api.signin.SignInAccount;
+import com.example.skyler.softcalendar.uiredo.MainForm;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -32,7 +31,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -423,7 +421,7 @@ public class MainActivity extends Activity
     }
 
         private void goToMainForm(){
-            Intent intent = new Intent(this, openui.class);
+            Intent intent = new Intent(this, MainForm.class);
             intent.putExtra("userEmail", mCredential.getSelectedAccountName());
             //TODO: you have to find a way to get the user's name and pass that, but we're not doing that right now
             intent.putExtra("userName", "your name");

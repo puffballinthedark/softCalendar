@@ -9,14 +9,14 @@ import android.widget.Button;
 import com.example.skyler.softcalendar.MakeCalendarEvent;
 import com.example.skyler.softcalendar.R;
 
-public class hourEventsForm extends AppCompatActivity {
+public class ChecklistForm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hour_events_form);
+        setContentView(R.layout.activity_checklist_form);
 
-        Button createEvent = (Button) findViewById(R.id.buttonCreateHourEvent);
+        Button createEvent = (Button) findViewById(R.id.buttonCreateChecklist);
         createEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 goToMakeEvent();
@@ -27,5 +27,6 @@ public class hourEventsForm extends AppCompatActivity {
         Intent intent = new Intent(this, MakeCalendarEvent.class);
         startActivity(intent);
     }
+
     }
 
