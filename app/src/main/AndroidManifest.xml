@@ -68,7 +68,14 @@
         <activity
             android:name=".MakeCalendarEvent"
             android:label="@string/title_activity_make_calendar_event"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".CalendarEventViewer"
+            android:parentActivityName=".MakeCalendarEvent">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.skyler.softcalendar.MakeCalendarEvent" />
         </activity>
     </application>
 

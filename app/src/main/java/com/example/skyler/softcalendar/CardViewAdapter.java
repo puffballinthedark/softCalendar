@@ -1,6 +1,7 @@
 package com.example.skyler.softcalendar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         holder.mTextView.setClickable(true);
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                goToCalendarViewAdapter(position);
                 //TODO: open a form here that shows you all your stuff
             }
         });
@@ -47,6 +49,11 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     @Override
     public int getItemCount(){
         return mDataSet.size();
+    }
+    private void goToCalendarViewAdapter(int position){
+        Intent intent = new Intent(mContext,CalendarEventViewer.class);
+        intent.putExtra("position", position);
+        mContext.startActivity(intent);
     }
 
 
