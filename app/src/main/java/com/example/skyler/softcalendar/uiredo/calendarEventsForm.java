@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.example.skyler.softcalendar.CalendarAdapter;
 import com.example.skyler.softcalendar.CalendarEventManager;
 import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.MakeCalendarEvent;
@@ -25,13 +23,21 @@ public class calendarEventsForm extends AppCompatActivity{
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_events_form);
+        mContext = getApplicationContext();
+
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewCalendarEvent);
+
+        mAdapter = new CardViewAdapter(mContext,CalendarEventManager.calendars);
+        mLayoutManager = new LinearLayoutManager(mContext);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.notifyDataSetChanged();
 
 
         Button createEvent = (Button) findViewById(R.id.buttonCreateEvent);
@@ -39,7 +45,8 @@ public class calendarEventsForm extends AppCompatActivity{
             public void onClick(View v) {
                 goToMakeEvent();
             }
-        });}
+        });
+    }
 
 
     private void goToMakeEvent(){

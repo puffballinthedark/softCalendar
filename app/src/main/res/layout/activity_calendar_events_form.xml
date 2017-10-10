@@ -33,7 +33,6 @@
             android:scrollbars="vertical"
             android:layout_alignParentTop="true"
             android:layout_alignEnd="@+id/buttonCreateEvent"
-            android:background="@color/cardview_dark_background"
             android:layout_above="@+id/buttonCreateEvent" />
 
 
