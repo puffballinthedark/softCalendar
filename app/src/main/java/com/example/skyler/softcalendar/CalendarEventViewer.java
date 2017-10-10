@@ -54,9 +54,9 @@ public class CalendarEventViewer extends AppCompatActivity {
         title.setText(calendar.getTitle());
         notes.setText(calendar.getNotes());
         startTime.setText(calendar.getStart().toString().substring(11,16));
-        endTime.setText(calendar.getStart().toString().substring(11,16));
+        endTime.setText(calendar.getEnd().toString().substring(11,16));
         startDate.setText(calendar.getStart().toString().substring(0,10));
-        endDate.setText(calendar.getStart().toString().substring(0,10));
+        endDate.setText(calendar.getEnd().toString().substring(0,10));
 
 
       Button delete = (Button) findViewById(R.id.delete);

@@ -40,7 +40,6 @@ public class hourEventsForm extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
 
 
-
         Button createEvent = (Button) findViewById(R.id.buttonCreateHourEvent);
         createEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
