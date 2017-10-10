@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.skyler.softcalendar.uiredo.CalendarEventsForm;
+import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
@@ -78,7 +78,7 @@ public class CalendarEventViewer extends AppCompatActivity {
         });
     }
     private void goback(){
-        Intent intent = new Intent(this, CalendarEventsForm.class);
+        Intent intent = new Intent(this, calendarEventsForm.class);
         startActivity(intent);
     }
     private void makeEvent(){

@@ -1,6 +1,6 @@
 package com.example.skyler.softcalendar;
 
-import com.example.skyler.softcalendar.uiredo.MainForm;
+import com.example.skyler.softcalendar.uiredo.openui;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -421,7 +421,7 @@ public class MainActivity extends Activity
     }
 
         private void goToMainForm(){
-            Intent intent = new Intent(this, MainForm.class);
+            Intent intent = new Intent(this, openui.class);
             intent.putExtra("userEmail", mCredential.getSelectedAccountName());
             //TODO: you have to find a way to get the user's name and pass that, but we're not doing that right now
             intent.putExtra("userName", "your name");

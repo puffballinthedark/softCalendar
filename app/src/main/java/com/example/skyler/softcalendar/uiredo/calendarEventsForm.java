@@ -15,7 +15,7 @@ import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.MakeCalendarEvent;
 import com.example.skyler.softcalendar.R;
 
-public class CalendarEventsForm extends AppCompatActivity{
+public class calendarEventsForm extends AppCompatActivity{
     private static Context mContext;
 
     RelativeLayout mRelativeLayout;
