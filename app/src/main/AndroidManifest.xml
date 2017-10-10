@@ -22,24 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainForm"
-            android:label="@string/title_activity_main_form"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".CreateEvent"
-            android:label="@string/title_activity_create_event"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ChooseTime"
-            android:label="@string/title_activity_choose_time"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ChooseName"
-            android:label="@string/title_activity_choose_name"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CustomView" />
-        <activity android:name=".GoogleCalendarCreator" />
         <activity
             android:name=".uiredo.openui"
             android:label="@string/title_activity_openui"

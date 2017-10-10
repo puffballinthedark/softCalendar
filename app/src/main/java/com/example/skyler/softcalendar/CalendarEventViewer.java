@@ -75,6 +75,8 @@ public class CalendarEventViewer extends AppCompatActivity {
             public void onClick(View v){
                 backgroundTask calendarAdd = new backgroundTask();
                 calendarAdd.execute();
+                CalendarEventManager.removeCalendarObject(position);
+                goback();
 
             }
         });
