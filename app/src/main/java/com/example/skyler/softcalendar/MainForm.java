@@ -19,7 +19,6 @@ public class MainForm extends AppCompatActivity {
 
     RelativeLayout mRelativeLayout;
     private RecyclerView mRecyclerView;
-
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -27,12 +26,11 @@ public class MainForm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_form);
 
-        mContext = getApplicationContext();
+        mContext = getParent().getBaseContext();
 
         mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
