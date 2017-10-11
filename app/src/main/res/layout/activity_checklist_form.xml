@@ -12,16 +12,31 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <Button
-            android:id="@+id/buttonCreateChecklist"
+        <EditText
+            android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:text="make new item on checklist"
-            tools:text="create new item on checklist" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:layout_toStartOf="@+id/buttonChecklistAdd" />
 
+        <Button
+            android:id="@+id/buttonChecklistAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/editText"
+            android:text="add" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewChecklist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/editText"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

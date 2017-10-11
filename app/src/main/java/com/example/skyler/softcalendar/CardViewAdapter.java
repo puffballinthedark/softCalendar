@@ -41,7 +41,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 goToCalendarViewAdapter(position);
-                //TODO: open a form here that shows you all your stuff
             }
         });
     }
