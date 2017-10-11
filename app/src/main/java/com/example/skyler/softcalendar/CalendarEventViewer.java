@@ -42,6 +42,13 @@ public class CalendarEventViewer extends AppCompatActivity {
         Intent mIntent = getIntent();
         final int position = mIntent.getIntExtra("position", 0);
 
+
+        //TODO: the hour event viewer isn't indexing properly.
+        //it's looking for the index of the calendareventmanager instead of the houreventmanager
+        //this is something I don't know why it is happening
+        //also why it's not calling houreventviewer????
+        //I need to figure out where it's calling this from.
+
         calendar = CalendarEventManager.calendars.get(position);
 
         TextView startTime = (TextView) findViewById(R.id.startTime);
