@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.skyler.softcalendar.CalendarEventManager;
 import com.example.skyler.softcalendar.CardViewAdapter;
+import com.example.skyler.softcalendar.EventAggregatorManager;
+import com.example.skyler.softcalendar.MainFormElementsAadapter;
 import com.example.skyler.softcalendar.R;
 
 public class openui extends AppCompatActivity
@@ -47,7 +49,7 @@ public class openui extends AppCompatActivity
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewMainForm);
 
-        mAdapter = new CardViewAdapter(mContext, CalendarEventManager.calendars);
+        mAdapter = new MainFormElementsAadapter(mContext, EventAggregatorManager.items);
         mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

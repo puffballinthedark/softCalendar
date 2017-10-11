@@ -31,7 +31,6 @@ public class ChecklistViewAdapter extends RecyclerView.Adapter<ChecklistViewAdap
         holder.mTextView.setClickable(true);
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
             }
         });
     }

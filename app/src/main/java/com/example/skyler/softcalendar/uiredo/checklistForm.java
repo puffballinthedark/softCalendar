@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.ChecklistEventManager;
 import com.example.skyler.softcalendar.ChecklistObject;
 import com.example.skyler.softcalendar.ChecklistViewAdapter;
-import com.example.skyler.softcalendar.EventAggregator;
-import com.example.skyler.softcalendar.HourEventManager;
+import com.example.skyler.softcalendar.EventAggregatorManager;
 import com.example.skyler.softcalendar.R;
 
 public class checklistForm extends AppCompatActivity {
@@ -42,7 +40,7 @@ public class checklistForm extends AppCompatActivity {
                 name.setName(checkListText.getText().toString());
 
                 ChecklistEventManager.addChecklistEvent(name.getName());
-                EventAggregator.additem(name);
+                EventAggregatorManager.additem(name);
                 checkListText.setText("");
                 refresh();
             }

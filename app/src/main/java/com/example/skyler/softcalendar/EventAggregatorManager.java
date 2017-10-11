@@ -2,7 +2,7 @@ package com.example.skyler.softcalendar;
 
 import java.util.ArrayList;
 
-public class EventAggregator {
+public class EventAggregatorManager {
     public static ArrayList<Object> items = new ArrayList<Object>();
 
     public static void additem(Object x){

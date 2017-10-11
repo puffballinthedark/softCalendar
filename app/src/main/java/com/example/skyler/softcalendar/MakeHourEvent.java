@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
 import com.example.skyler.softcalendar.uiredo.hourEventsForm;
 import com.google.api.client.util.DateTime;
 import com.travijuu.numberpicker.library.NumberPicker;
@@ -135,7 +134,7 @@ public class MakeHourEvent extends AppCompatActivity implements View.OnClickList
             calendar.setStart(DateTime.parseRfc3339(DateString + TimeString));
             calendar.setEnd(DateTime.parseRfc3339(DateString + endTime));
             HourEventManager.addCalendarObject(calendar);
-            EventAggregator.additem(calendar);
+            EventAggregatorManager.additem(calendar);
             goBack();
         }
         if (v == cancel){

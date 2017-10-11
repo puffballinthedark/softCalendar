@@ -36,7 +36,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(CardViewAdapter.ViewHolder holder, final int position){
         holder.mTextView.setText(mDataSet.get(position).getTitle());
-        holder.mTextView.setText(mDataSet.get(position).getTitle());
         holder.mTextView.setClickable(true);
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
