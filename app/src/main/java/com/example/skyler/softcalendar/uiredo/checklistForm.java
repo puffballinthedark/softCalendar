@@ -11,7 +11,9 @@ import android.widget.EditText;
 
 import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.ChecklistEventManager;
+import com.example.skyler.softcalendar.ChecklistObject;
 import com.example.skyler.softcalendar.ChecklistViewAdapter;
+import com.example.skyler.softcalendar.EventAggregator;
 import com.example.skyler.softcalendar.HourEventManager;
 import com.example.skyler.softcalendar.R;
 
@@ -29,13 +31,19 @@ public class checklistForm extends AppCompatActivity {
         setContentView(R.layout.activity_checklist_form);
         refresh();
 
-        final EditText checklistText = (EditText) findViewById(R.id.editText);
 
         Button add = (Button) findViewById(R.id.buttonChecklistAdd);
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ChecklistEventManager.addChecklistEvent(checklistText.getText().toString());
-                checklistText.setText("");
+
+                ChecklistObject name = new ChecklistObject();
+                EditText checkListText = (EditText) findViewById(R.id.editText);
+
+                name.setName(checkListText.getText().toString());
+
+                ChecklistEventManager.addChecklistEvent(name.getName());
+                EventAggregator.additem(name);
+                checkListText.setText("");
                 refresh();
             }
         });}
