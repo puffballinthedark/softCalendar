@@ -1,6 +1,7 @@
 package com.example.skyler.softcalendar.uiredo;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +14,10 @@ import com.example.skyler.softcalendar.ChecklistEventManager;
 import com.example.skyler.softcalendar.ChecklistObject;
 import com.example.skyler.softcalendar.ChecklistViewAdapter;
 import com.example.skyler.softcalendar.EventAggregatorManager;
+import com.example.skyler.softcalendar.HourEventManager;
+import com.example.skyler.softcalendar.MainActivity;
 import com.example.skyler.softcalendar.R;
+import com.google.gson.Gson;
 
 public class checklistForm extends AppCompatActivity {
 
@@ -44,6 +48,15 @@ public class checklistForm extends AppCompatActivity {
                 checkListText.setText("");
                 refresh();
                 //TODO: this is where you save the thing as well.
+
+                SharedPreferences.Editor ed = MainActivity.EventData.edit();
+                Gson gson = new Gson();
+                String checklistEventManager = gson.toJson(ChecklistEventManager.checklists);
+                String aggregatedEvents = gson.toJson(EventAggregatorManager.items);
+
+                ed.putString("SavedChecklistEvents", checklistEventManager);
+                ed.putString("SavedAggregatedEvents", aggregatedEvents);
+                ed.apply();
 
             }
         });}

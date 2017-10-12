@@ -140,7 +140,7 @@ public class MainActivity extends Activity
         String SavedCalendarData = EventData.getString("SavedCalendarEvents", "null");
         String SavedEventData = EventData.getString("SavedAggregatedEvents", "null");
         String SavedHourEventData = EventData.getString("SavedHourEvents", "null");
-        String SavedChecklistData = EventData.getString("SavedChecklistData","null");
+        String SavedChecklistData = EventData.getString("SavedChecklistEvents","null");
 
         Type CalendarEventArray = new TypeToken<ArrayList<CalendarEvent>>(){}.getType();
         Type EventArray = new TypeToken<ArrayList<Object>>(){}.getType();
