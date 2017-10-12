@@ -72,27 +72,11 @@ public class MainActivity extends Activity
      * Create the main activity.
      * @param savedInstanceState previously saved instance data.
      */
-    protected static final String EVENT_DATA = "EventFile";
+    protected static final String EVENT_DATA = "com.example.softCalendar.EVENT_DATA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        EventData = getApplicationContext().getSharedPreferences(EVENT_DATA, MODE_PRIVATE);
-        SharedPreferences.Editor ed = EventData.edit();
-        ed.clear();
-        ed.apply();
-
-
-//TODO: this doesn't work properly.
-// TODO: I'm not completely sure what it's doing, but it's not saving right or not reading right.
-
-        String SavedCalendarData = MainActivity.EventData.getString("CalendarEventArrayList", "failed");
-        Gson gson = new Gson();
-        if (SavedCalendarData != "failed"){
-        ArrayList<CalendarEvent> obj = gson.fromJson(SavedCalendarData, ArrayList.class);
-            if(!obj.isEmpty()){
-                CalendarEventManager.setCalendar(obj);
-            }}
 
         super.onCreate(savedInstanceState);
         LinearLayout activityLayout = new LinearLayout(this);
@@ -137,6 +121,26 @@ public class MainActivity extends Activity
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
+
+
+
+
+        EventData = getApplicationContext().getSharedPreferences(EVENT_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor ed = EventData.edit();
+//TODO: this doesn't work properly.
+// TODO: I'm not completely sure what it's doing, but it's not saving right or not reading right.
+        String SavedCalendarData = EventData.getString("CalendarEventArrayList", "failed");
+        //what in tarnation
+        mCallApiButton.setText(SavedCalendarData);
+
+
+
+        /*Gson gson = new Gson();
+        if (SavedCalendarData != "failed"){
+        ArrayList<CalendarEvent> obj = gson.fromJson(SavedCalendarData, ArrayList.class);
+            if(!obj.isEmpty()){
+                CalendarEventManager.setCalendar(obj);
+            }} */
     }
 
 
