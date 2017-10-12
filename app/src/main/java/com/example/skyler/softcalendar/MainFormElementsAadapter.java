@@ -34,12 +34,14 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
         String dataSetName = mDataSet.get(position).getClass().getSimpleName();
         if(dataSetName.equals("CalendarEvent")){
             return -1;
-        }else{
+        }else if (dataSetName.equals("HourEvent")){
+            return -2;
+        } else{
             return 0;}
     }
     @Override
     public MainFormElementsAadapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        if (viewType == -1){
+        if (viewType <= -1){
             View v = LayoutInflater.from(mContext).inflate(R.layout.activity_custom_view,parent,false);
             MainFormElementsAadapter.ViewHolder vh = new MainFormElementsAadapter.ViewHolder(v);
             return vh;
@@ -59,6 +61,15 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
                     goToCalendarEventViewer(position);
                 }
             });
+        } else if (holder.getItemViewType() == -2){
+            HourEvent title = (HourEvent)mDataSet.get(position);
+            holder.mTextView.setText(title.getTitle());
+            holder.mTextView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    goToHourEventViewer(position);
+                }
+            });
+
         }
         else{
             ChecklistObject title = (ChecklistObject)mDataSet.get(position);
@@ -85,6 +96,12 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
     private void goToChecklistViewer (){
         Intent intent = new Intent(mContext,checklistForm.class);
         mContext.startActivity(intent);
+    }
+    private void goToHourEventViewer (int position){
+        Intent intent = new Intent(mContext,HourEventViewer.class);
+        intent.putExtra("position", position);
+        mContext.startActivity(intent);
+
     }
 
 

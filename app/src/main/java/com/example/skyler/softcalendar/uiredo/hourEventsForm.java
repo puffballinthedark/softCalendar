@@ -9,11 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.skyler.softcalendar.CalendarEventManager;
-import com.example.skyler.softcalendar.CardViewAdapter;
 import com.example.skyler.softcalendar.HourEventAdapter;
 import com.example.skyler.softcalendar.HourEventManager;
-import com.example.skyler.softcalendar.MakeCalendarEvent;
 import com.example.skyler.softcalendar.MakeHourEvent;
 import com.example.skyler.softcalendar.R;
 

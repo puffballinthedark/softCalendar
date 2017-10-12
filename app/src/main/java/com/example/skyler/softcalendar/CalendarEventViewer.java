@@ -1,5 +1,6 @@
 package com.example.skyler.softcalendar;
 
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -70,6 +71,7 @@ public class CalendarEventViewer extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 CalendarEventManager.removeCalendarObject(position);
+                EventAggregatorManager.removeitem(position);
                 goback();
             }
         });
@@ -79,6 +81,7 @@ public class CalendarEventViewer extends AppCompatActivity {
                 backgroundTask calendarAdd = new backgroundTask();
                 calendarAdd.execute();
                 CalendarEventManager.removeCalendarObject(position);
+                EventAggregatorManager.removeitem(position);
                 goback();
 
             }

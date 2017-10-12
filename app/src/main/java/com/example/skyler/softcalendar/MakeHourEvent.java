@@ -32,7 +32,7 @@ public class MakeHourEvent extends AppCompatActivity implements View.OnClickList
 
     private int mYear, mMonth, mDay, mHour, mMinute;
 
-    CalendarEvent calendar = new CalendarEvent();
+    HourEvent calendar = new HourEvent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

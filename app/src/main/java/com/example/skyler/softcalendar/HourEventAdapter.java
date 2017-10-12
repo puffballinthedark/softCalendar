@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class HourEventAdapter extends RecyclerView.Adapter<HourEventAdapter.ViewHolder>{
     private Context mContext;
-    private ArrayList<CalendarEvent> mDataSet;
+    private ArrayList<HourEvent> mDataSet;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
@@ -22,7 +22,7 @@ public class HourEventAdapter extends RecyclerView.Adapter<HourEventAdapter.View
             mTextView = (TextView)v.findViewById(R.id.tv);
         }
     }
-    public HourEventAdapter(Context context, ArrayList<CalendarEvent> DataSet){
+    public HourEventAdapter(Context context, ArrayList<HourEvent> DataSet){
         mDataSet = DataSet;
         mContext = context;
     }

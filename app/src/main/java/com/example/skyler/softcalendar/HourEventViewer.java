@@ -1,5 +1,6 @@
 package com.example.skyler.softcalendar;
 
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import java.util.Arrays;
 
 public class HourEventViewer extends AppCompatActivity {
     com.google.api.services.calendar.Calendar.Events events = null;
-    CalendarEvent calendar;
+    HourEvent calendar;
 
     private class backgroundTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -65,6 +66,7 @@ public class HourEventViewer extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 HourEventManager.removeCalendarObject(position);
+                EventAggregatorManager.removeitem(position);
                 goback();
             }
         });
@@ -74,6 +76,7 @@ public class HourEventViewer extends AppCompatActivity {
                 HourEventViewer.backgroundTask calendarAdd = new HourEventViewer.backgroundTask();
                 calendarAdd.execute();
                 HourEventManager.removeCalendarObject(position);
+                EventAggregatorManager.removeitem(position);
                 goback();
 
             }
