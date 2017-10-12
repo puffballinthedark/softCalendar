@@ -11,5 +11,9 @@ public class EventAggregatorManager {
     public static void removeitem(int x){
         items.remove(x);
     }
+    public static void setItems(ArrayList<Object> newArray){
+        items.clear();
+        items = new ArrayList<>(newArray);
+    }
 
 }

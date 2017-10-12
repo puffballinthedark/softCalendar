@@ -3,6 +3,7 @@ package com.example.skyler.softcalendar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import android.widget.TimePicker;
 
 import com.example.skyler.softcalendar.uiredo.hourEventsForm;
 import com.google.api.client.util.DateTime;
+import com.google.gson.Gson;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.util.Locale;
@@ -136,6 +138,16 @@ public class MakeHourEvent extends AppCompatActivity implements View.OnClickList
             HourEventManager.addCalendarObject(calendar);
             EventAggregatorManager.additem(calendar);
             //TODO: this is where you write to the file;
+
+            SharedPreferences.Editor ed = MainActivity.EventData.edit();
+            Gson gson = new Gson();
+            String hourEventManager = gson.toJson(HourEventManager.calendars);
+            String aggregatedEvents = gson.toJson(EventAggregatorManager.items);
+
+            ed.putString("SavedHourEvents", hourEventManager);
+            ed.putString("SavedAggregatedEvents", aggregatedEvents);
+            ed.apply();
+
 
             goBack();
         }

@@ -51,6 +51,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -135,17 +136,42 @@ public class MainActivity extends Activity
         EventData = getApplicationContext().getSharedPreferences(EVENT_DATA, MODE_PRIVATE);
         SharedPreferences.Editor ed = EventData.edit();
         ed.clear();
-        String SavedCalendarData = EventData.getString("SavedCalendarEvents", "failed");
-        String SavedEventData = EventData.getString("SavedAggregatedEvents", "failed");
+
+        String SavedCalendarData = EventData.getString("SavedCalendarEvents", "null");
+        String SavedEventData = EventData.getString("SavedAggregatedEvents", "null");
+        String SavedHourEventData = EventData.getString("SavedHourEvents", "null");
+        String SavedChecklistData = EventData.getString("SavedChecklistData","null");
 
         Type CalendarEventArray = new TypeToken<ArrayList<CalendarEvent>>(){}.getType();
-        Type SavedEventArray = new TypeToken<ArrayList<Object>>(){}.getType();
+        Type EventArray = new TypeToken<ArrayList<Object>>(){}.getType();
+        Type HourArray = new TypeToken<ArrayList<HourEvent>>(){}.getType();
+
+        //TODO: look over the types for your checklist saving, what exacty is going on
+        Type ChecklistArray = new TypeToken <ArrayList<String>>(){}.getType();
+
 
         Gson gson = new Gson();
-        ArrayList<Object> RetrievedEventArray = gson.fromJson(SavedCalendarData, SavedEventArray);
         ArrayList<CalendarEvent> RetrievedCalendarEventArray = gson.fromJson(SavedCalendarData, CalendarEventArray);
 
-        CalendarEventManager.setCalendar(RetrievedCalendarEventArray);
+        ArrayList<HourEvent> RetrievedHourEventArray = gson.fromJson(SavedHourEventData, HourArray);
+
+        ArrayList<Object> RetrievedEventArray = gson.fromJson(SavedEventData, EventArray);
+
+        ArrayList<String> RetrievedChecklistArray = gson.fromJson(SavedChecklistData, ChecklistArray);
+
+
+        if (!Objects.equals(SavedCalendarData, "null")){
+            CalendarEventManager.setCalendar(RetrievedCalendarEventArray);
+        }
+        if (!Objects.equals(SavedHourEventData, "null")){
+            HourEventManager.setCalendar(RetrievedHourEventArray);
+        }
+        if (!Objects.equals(SavedHourEventData, "null")){
+            HourEventManager.setCalendar(RetrievedHourEventArray);
+        }
+        if (!Objects.equals(SavedChecklistData, "null")){
+            ChecklistEventManager.setChecklists(RetrievedChecklistArray);
+        }
 
     }
 
