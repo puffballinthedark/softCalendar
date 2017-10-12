@@ -18,10 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/buttonChecklistAdd"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:layout_toStartOf="@+id/buttonChecklistAdd" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/buttonChecklistAdd"
