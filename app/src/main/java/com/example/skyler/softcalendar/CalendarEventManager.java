@@ -11,4 +11,8 @@ public class CalendarEventManager {
     public static void removeCalendarObject(int x){
         calendars.remove(x);
     }
+    public static void setCalendar(ArrayList<CalendarEvent> newCalendar){
+        calendars.clear();
+        calendars = new ArrayList<>(newCalendar);
+    }
 }

@@ -3,6 +3,7 @@ package com.example.skyler.softcalendar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,12 @@ import android.widget.TimePicker;
 
 import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
 import com.google.api.client.util.DateTime;
+import com.google.gson.Gson;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class MakeCalendarEvent extends AppCompatActivity implements View.OnClickListener{
 
@@ -189,6 +194,15 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             calendar.setEnd(DateTime.parseRfc3339(EndDate + EndTime));
             CalendarEventManager.addCalendarObject(calendar);
             EventAggregatorManager.additem(calendar);
+            //TODO: this is also where you write to the file;
+
+
+            SharedPreferences.Editor ed = MainActivity.EventData.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(CalendarEventManager.calendars);
+            ed.putString("CalendarEventArrayList", json);
+            ed.apply();
+
             goBack();
         }
         if (v == cancel){

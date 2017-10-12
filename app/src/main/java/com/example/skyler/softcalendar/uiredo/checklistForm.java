@@ -43,12 +43,12 @@ public class checklistForm extends AppCompatActivity {
                 EventAggregatorManager.additem(name);
                 checkListText.setText("");
                 refresh();
+                //TODO: this is where you save the thing as well.
+
             }
         });}
     private void refresh(){
-
         mContext = getApplicationContext();
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewChecklist);
 
         mAdapter = new ChecklistViewAdapter(mContext, ChecklistEventManager.checklists);

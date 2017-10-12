@@ -17,6 +17,7 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.client.util.DateTime;
 
 import com.google.api.services.calendar.model.*;
+import com.google.gson.Gson;
 
 import android.Manifest;
 import android.accounts.AccountManager;
@@ -38,6 +39,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,6 +57,8 @@ public class MainActivity extends Activity
     ProgressDialog mProgress;
     private static com.google.api.services.calendar.Calendar mService = null;
 
+    public static SharedPreferences EventData;
+
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     static final int REQUEST_AUTHORIZATION = 1001;
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
@@ -68,8 +72,27 @@ public class MainActivity extends Activity
      * Create the main activity.
      * @param savedInstanceState previously saved instance data.
      */
+    protected static final String EVENT_DATA = "EventFile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        EventData = getApplicationContext().getSharedPreferences(EVENT_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor ed = EventData.edit();
+        ed.clear();
+        ed.apply();
+
+
+//TODO: this doesn't work properly.
+// TODO: I'm not completely sure what it's doing, but it's not saving right or not reading right.
+
+        String SavedCalendarData = MainActivity.EventData.getString("CalendarEventArrayList", "failed");
+        Gson gson = new Gson();
+        if (SavedCalendarData != "failed"){
+        ArrayList<CalendarEvent> obj = gson.fromJson(SavedCalendarData, ArrayList.class);
+            if(!obj.isEmpty()){
+                CalendarEventManager.setCalendar(obj);
+            }}
 
         super.onCreate(savedInstanceState);
         LinearLayout activityLayout = new LinearLayout(this);
@@ -428,6 +451,8 @@ public class MainActivity extends Activity
             intent.putExtra("userName", "your name");
             startActivity(intent);
     }
+
+
     public static com.google.api.services.calendar.Calendar getmService(){
         return mService;
     }

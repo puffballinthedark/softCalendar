@@ -135,6 +135,8 @@ public class MakeHourEvent extends AppCompatActivity implements View.OnClickList
             calendar.setEnd(DateTime.parseRfc3339(DateString + endTime));
             HourEventManager.addCalendarObject(calendar);
             EventAggregatorManager.additem(calendar);
+            //TODO: this is where you write to the file;
+
             goBack();
         }
         if (v == cancel){
