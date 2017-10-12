@@ -198,9 +198,11 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
 
             SharedPreferences.Editor ed = MainActivity.EventData.edit();
             Gson gson = new Gson();
-            String json = gson.toJson(CalendarEventManager.calendars);
+            String calendarEvents = gson.toJson(CalendarEventManager.calendars);
+            String aggregatedEvents = gson.toJson(EventAggregatorManager.items);
 
-            ed.putString("SavedCalendarEvents", json);
+            ed.putString("SavedCalendarEvents", calendarEvents);
+            ed.putString("SavedAggregatedEvents", aggregatedEvents);
             ed.apply();
 
             goBack();
