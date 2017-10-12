@@ -123,25 +123,36 @@ public class MainActivity extends Activity
                 .setBackOff(new ExponentialBackOff());
 
 
-
+//TODO: this doesn't work properly.
+// TODO: I'm not completely sure what it's doing, but it's not saving right or not reading right.
 
         EventData = getApplicationContext().getSharedPreferences(EVENT_DATA, MODE_PRIVATE);
         SharedPreferences.Editor ed = EventData.edit();
-//TODO: this doesn't work properly.
-// TODO: I'm not completely sure what it's doing, but it's not saving right or not reading right.
+        ed.clear();
+        String SavedCalendarData = EventData.getString("SavedCalendarEvents", "failed");
+
+        Gson gson = new Gson();
+        ArrayList<CalendarEvent> obj = gson.fromJson(SavedCalendarData, ArrayList.class);
+
+
+        mCallApiButton.setText(obj.toString());
+
+
+    }
+
+
+
+        /*
         String SavedCalendarData = EventData.getString("CalendarEventArrayList", "failed");
         //what in tarnation
         mCallApiButton.setText(SavedCalendarData);
 
-
-
-        /*Gson gson = new Gson();
+        Gson gson = new Gson();
         if (SavedCalendarData != "failed"){
         ArrayList<CalendarEvent> obj = gson.fromJson(SavedCalendarData, ArrayList.class);
             if(!obj.isEmpty()){
                 CalendarEventManager.setCalendar(obj);
             }} */
-    }
 
 
 
