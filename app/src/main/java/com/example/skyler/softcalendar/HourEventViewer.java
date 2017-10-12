@@ -51,7 +51,6 @@ public class HourEventViewer extends AppCompatActivity {
         TextView startTime = (TextView) findViewById(R.id.startTime);
         TextView endTime = (TextView) findViewById(R.id.endTime);
         TextView startDate = (TextView) findViewById(R.id.startDate);
-        TextView endDate = (TextView) findViewById(R.id.endDate);
         TextView notes = (TextView) findViewById(R.id.notes);
         TextView title = (TextView) findViewById(R.id.title);
 
@@ -60,7 +59,6 @@ public class HourEventViewer extends AppCompatActivity {
         startTime.setText(calendar.getStart().toString().substring(11,16));
         endTime.setText(calendar.getEnd().toString().substring(11,16));
         startDate.setText(calendar.getStart().toString().substring(0,10));
-        endDate.setText(calendar.getEnd().toString().substring(0,10));
 
 
         Button delete = (Button) findViewById(R.id.delete);

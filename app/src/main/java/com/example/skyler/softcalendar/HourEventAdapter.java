@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHolder>{
+public class HourEventAdapter extends RecyclerView.Adapter<HourEventAdapter.ViewHolder>{
     private Context mContext;
     private ArrayList<CalendarEvent> mDataSet;
 
@@ -22,23 +22,24 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
             mTextView = (TextView)v.findViewById(R.id.tv);
         }
     }
-    public CardViewAdapter(Context context, ArrayList<CalendarEvent> DataSet){
+    public HourEventAdapter(Context context, ArrayList<CalendarEvent> DataSet){
         mDataSet = DataSet;
         mContext = context;
     }
 
     @Override
-    public CardViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public HourEventAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from(mContext).inflate(R.layout.activity_custom_view,parent,false);
-        CardViewAdapter.ViewHolder vh = new CardViewAdapter.ViewHolder(v);
+        HourEventAdapter.ViewHolder vh = new HourEventAdapter.ViewHolder(v);
         return vh;
     }
     @Override
-    public void onBindViewHolder(CardViewAdapter.ViewHolder holder, final int position){
+    public void onBindViewHolder(HourEventAdapter.ViewHolder holder, final int position){
 
-            holder.mTextView.setText(mDataSet.get(position).getTitle());
-            holder.mTextView.setClickable(true);
-            holder.mTextView.setOnClickListener(new View.OnClickListener() {
+
+        holder.mTextView.setText(mDataSet.get(position).getTitle());
+        holder.mTextView.setClickable(true);
+        holder.mTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 goToCalendarViewer(position);
             }
@@ -52,7 +53,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     }
 
     private void goToCalendarViewer(int position){
-        Intent intent = new Intent(mContext,CalendarEventViewer.class);
+        Intent intent = new Intent(mContext,HourEventViewer.class);
         intent.putExtra("position", position);
         mContext.startActivity(intent);
     }

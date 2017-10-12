@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.skyler.softcalendar.CalendarEventManager;
 import com.example.skyler.softcalendar.CardViewAdapter;
+import com.example.skyler.softcalendar.HourEventAdapter;
 import com.example.skyler.softcalendar.HourEventManager;
 import com.example.skyler.softcalendar.MakeCalendarEvent;
 import com.example.skyler.softcalendar.MakeHourEvent;
@@ -32,7 +33,7 @@ public class hourEventsForm extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewHourEvents);
 
-        mAdapter = new CardViewAdapter(mContext, HourEventManager.calendars);
+        mAdapter = new HourEventAdapter(mContext, HourEventManager.calendars);
         mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
