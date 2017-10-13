@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ChecklistViewAdapter extends RecyclerView.Adapter<ChecklistViewAdapter.ViewHolder> {
     private Context mContext;
-    private ArrayList<String> mDataSet;
+    private ArrayList<ChecklistObject> mDataSet;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView;
@@ -20,14 +20,14 @@ public class ChecklistViewAdapter extends RecyclerView.Adapter<ChecklistViewAdap
             mTextView = (TextView)v.findViewById(R.id.tv);
         }
     }
-    public ChecklistViewAdapter(Context context, ArrayList<String> DataSet){
+    public ChecklistViewAdapter(Context context, ArrayList<ChecklistObject> DataSet){
         mDataSet = DataSet;
         mContext = context;
     }
 
     @Override
     public void onBindViewHolder(ChecklistViewAdapter.ViewHolder holder, final int position){
-        holder.mTextView.setText(mDataSet.get(position));
+        holder.mTextView.setText(mDataSet.get(position).getName());
         holder.mTextView.setClickable(true);
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

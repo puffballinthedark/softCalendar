@@ -43,7 +43,7 @@ public class checklistForm extends AppCompatActivity {
 
                 name.setName(checkListText.getText().toString());
 
-                ChecklistEventManager.addChecklistEvent(name.getName());
+                ChecklistEventManager.addChecklistEvent(name);
                 EventAggregatorManager.additem(name);
                 checkListText.setText("");
                 refresh();

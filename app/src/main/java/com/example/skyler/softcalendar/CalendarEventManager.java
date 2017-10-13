@@ -15,4 +15,7 @@ public class CalendarEventManager {
         calendars.clear();
         calendars = new ArrayList<>(newCalendar);
     }
+    public static String getType(){
+        return "CalendarEvent";
+    }
 }

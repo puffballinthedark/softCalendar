@@ -18,6 +18,7 @@ import com.google.api.client.util.DateTime;
 
 import com.google.api.services.calendar.model.*;
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import android.Manifest;
@@ -142,37 +143,43 @@ public class MainActivity extends Activity
         String SavedHourEventData = EventData.getString("SavedHourEvents", "null");
         String SavedChecklistData = EventData.getString("SavedChecklistEvents","null");
 
-        Type CalendarEventArray = new TypeToken<ArrayList<CalendarEvent>>(){}.getType();
-        Type EventArray = new TypeToken<ArrayList<Object>>(){}.getType();
-        Type HourArray = new TypeToken<ArrayList<HourEvent>>(){}.getType();
+        Type CalendarEventType = new TypeToken<ArrayList<CalendarEvent>>(){}.getType();
+        Type EventType = new TypeToken<ArrayList<Object>>(){}.getType();
+        Type HourType = new TypeToken<ArrayList<HourEvent>>(){}.getType();
 
         //TODO: look over the types for your checklist saving, what exacty is going on
-        Type ChecklistArray = new TypeToken <ArrayList<String>>(){}.getType();
+        Type ChecklistType = new TypeToken <ArrayList<ChecklistObject>>(){}.getType();
 
 
         Gson gson = new Gson();
-        ArrayList<CalendarEvent> RetrievedCalendarEventArray = gson.fromJson(SavedCalendarData, CalendarEventArray);
+        ArrayList<CalendarEvent> RetrievedCalendarEventArray = gson.fromJson(SavedCalendarData, CalendarEventType);
 
-        ArrayList<HourEvent> RetrievedHourEventArray = gson.fromJson(SavedHourEventData, HourArray);
+        ArrayList<HourEvent> RetrievedHourEventArray = gson.fromJson(SavedHourEventData, HourType);
+        ArrayList <Object> givingUp = new ArrayList<Object>();
 
-        ArrayList<Object> RetrievedEventArray = gson.fromJson(SavedEventData, EventArray);
+        ArrayList<ChecklistObject> RetrievedChecklistArray = gson.fromJson(SavedChecklistData, ChecklistType);
 
-        ArrayList<String> RetrievedChecklistArray = gson.fromJson(SavedChecklistData, ChecklistArray);
 
 
         if (!Objects.equals(SavedCalendarData, "null")){
             CalendarEventManager.setCalendar(RetrievedCalendarEventArray);
+            givingUp.addAll(RetrievedCalendarEventArray);
+
         }
         if (!Objects.equals(SavedHourEventData, "null")){
             HourEventManager.setCalendar(RetrievedHourEventArray);
-        }
-        if (!Objects.equals(SavedHourEventData, "null")){
-            HourEventManager.setCalendar(RetrievedHourEventArray);
+            givingUp.addAll(RetrievedHourEventArray);
+
+
         }
         if (!Objects.equals(SavedChecklistData, "null")){
             ChecklistEventManager.setChecklists(RetrievedChecklistArray);
-        }
+            givingUp.addAll(RetrievedChecklistArray);
 
+        }
+        if (!Objects.equals(givingUp, null)){
+            EventAggregatorManager.setItems(givingUp);
+        }
     }
 
 
