@@ -44,9 +44,7 @@ public class openui extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         mContext = getApplicationContext();
-
-        //TODO: you need to make this into a kind of recyclerview that can take all forms of input
-
+        
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewMainForm);
 
         mAdapter = new MainFormElementsAadapter(mContext, EventAggregatorManager.items);

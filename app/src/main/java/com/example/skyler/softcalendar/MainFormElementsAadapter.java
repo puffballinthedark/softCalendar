@@ -88,6 +88,11 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
         return mDataSet.size();
     }
 
+    //ok shit the position it's sending is sending the position of the element in the array that I built
+    //I need to find a way to save the location of every item and retrieve it in here, and then retrieve that elemtn from the array
+    //not using the value of the position in the new array
+    //that doesn't correspond with the actual array that exists. 
+
     private void goToCalendarEventViewer (int position){
         Intent intent = new Intent(mContext,CalendarEventViewer.class);
         intent.putExtra("position", position);
