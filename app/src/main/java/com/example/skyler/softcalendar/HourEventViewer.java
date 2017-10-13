@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
+import com.example.skyler.softcalendar.uiredo.hourEventsForm;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
@@ -91,6 +92,7 @@ public class HourEventViewer extends AppCompatActivity {
             public void onClick(View v){
                 HourEventViewer.backgroundTask calendarAdd = new HourEventViewer.backgroundTask();
                 calendarAdd.execute();
+
                 HourEventManager.removeCalendarObject(position);
                 EventAggregatorManager.removeitem(position);
 
@@ -109,7 +111,7 @@ public class HourEventViewer extends AppCompatActivity {
         });
     }
     private void goback(){
-        Intent intent = new Intent(this, calendarEventsForm.class);
+        Intent intent = new Intent(this, hourEventsForm.class);
         startActivity(intent);
     }
     private void makeEvent(){

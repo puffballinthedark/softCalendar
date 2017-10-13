@@ -196,6 +196,8 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             EventAggregatorManager.additem(calendar);
             //TODO: this is also where you write to the file;
 
+            calendar.setPosition(CalendarEventManager.calendars.size()-1);
+
             SharedPreferences.Editor ed = MainActivity.EventData.edit();
             Gson gson = new Gson();
             String calendarEvents = gson.toJson(CalendarEventManager.calendars);

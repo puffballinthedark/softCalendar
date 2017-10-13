@@ -52,21 +52,22 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
         }
     }
     @Override
+
     public void onBindViewHolder(MainFormElementsAadapter.ViewHolder holder, final int position){
         if (holder.getItemViewType() == -1){
-            CalendarEvent title = (CalendarEvent)mDataSet.get(position);
+            final CalendarEvent title = (CalendarEvent)mDataSet.get(position);
             holder.mTextView.setText(title.getTitle());
             holder.mTextView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    goToCalendarEventViewer(position);
+                    goToCalendarEventViewer(title.getPosition());
                 }
             });
         } else if (holder.getItemViewType() == -2){
-            HourEvent title = (HourEvent)mDataSet.get(position);
+            final HourEvent title = (HourEvent)mDataSet.get(position);
             holder.mTextView.setText(title.getTitle());
             holder.mTextView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    goToHourEventViewer(position);
+                    goToHourEventViewer(title.getPosition());
                 }
             });
 
@@ -87,12 +88,7 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
     public int getItemCount(){
         return mDataSet.size();
     }
-
-    //ok shit the position it's sending is sending the position of the element in the array that I built
-    //I need to find a way to save the location of every item and retrieve it in here, and then retrieve that elemtn from the array
-    //not using the value of the position in the new array
-    //that doesn't correspond with the actual array that exists. 
-
+    
     private void goToCalendarEventViewer (int position){
         Intent intent = new Intent(mContext,CalendarEventViewer.class);
         intent.putExtra("position", position);

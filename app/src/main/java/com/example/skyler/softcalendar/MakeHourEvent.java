@@ -138,6 +138,7 @@ public class MakeHourEvent extends AppCompatActivity implements View.OnClickList
             HourEventManager.addCalendarObject(calendar);
             EventAggregatorManager.additem(calendar);
             //TODO: this is where you write to the file;
+            calendar.setPosition(HourEventManager.calendars.size()-1);
 
             SharedPreferences.Editor ed = MainActivity.EventData.edit();
             Gson gson = new Gson();

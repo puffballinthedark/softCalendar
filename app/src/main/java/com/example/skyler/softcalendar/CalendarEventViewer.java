@@ -74,6 +74,7 @@ public class CalendarEventViewer extends AppCompatActivity {
             public void onClick(View v){
                 CalendarEventManager.removeCalendarObject(position);
                 EventAggregatorManager.removeitem(position);
+
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();
                 String calendarEvents = gson.toJson(CalendarEventManager.calendars);
