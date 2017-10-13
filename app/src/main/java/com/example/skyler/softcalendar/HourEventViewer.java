@@ -2,6 +2,7 @@ package com.example.skyler.softcalendar;
 
 import android.app.usage.UsageEvents;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
+import com.google.gson.Gson;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.io.IOException;
@@ -67,7 +69,21 @@ public class HourEventViewer extends AppCompatActivity {
             public void onClick(View v){
                 HourEventManager.removeCalendarObject(position);
                 EventAggregatorManager.removeitem(position);
+
+
+                SharedPreferences.Editor ed = MainActivity.EventData.edit();
+                Gson gson = new Gson();
+                String hourEvents = gson.toJson(HourEventManager.calendars);
+                String aggregatedEvents = gson.toJson(EventAggregatorManager.items);
+
+                ed.putString("SavedHourEvents", hourEvents);
+                ed.putString("SavedAggregatedEvents", aggregatedEvents);
+                ed.apply();
+
+
                 goback();
+
+
             }
         });
         Button addToCalendar = (Button) findViewById(R.id.addToCalendar);
@@ -77,6 +93,16 @@ public class HourEventViewer extends AppCompatActivity {
                 calendarAdd.execute();
                 HourEventManager.removeCalendarObject(position);
                 EventAggregatorManager.removeitem(position);
+
+                SharedPreferences.Editor ed = MainActivity.EventData.edit();
+                Gson gson = new Gson();
+                String hourEvents = gson.toJson(HourEventManager.calendars);
+                String aggregatedEvents = gson.toJson(EventAggregatorManager.items);
+
+                ed.putString("SavedHourEvents", hourEvents);
+                ed.putString("SavedAggregatedEvents", aggregatedEvents);
+                ed.apply();
+
                 goback();
 
             }
