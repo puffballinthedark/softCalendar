@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -77,10 +78,16 @@ public class HourEventViewer extends AppCompatActivity {
                 }
                 HourEventManager.removeCalendarObject(position);
 
-                //TODO: this doesn't work.
-                //it removes the item at the position it is in in the hourEventManger calendar.
-                //that means jack shit, it has to remove the actual item in the eventAggregator.
-                EventAggregatorManager.removeitem(position);
+                ArrayList<Object> calendarEventObjectArray = new ArrayList<Object>(CalendarEventManager.calendars);
+                ArrayList<Object> hourEventObjectArray = new ArrayList<Object>(HourEventManager.calendars);
+                ArrayList<Object> checklistEventObjectArray = new ArrayList<Object>(ChecklistEventManager.checklists);
+
+                ArrayList<Object> allItems = new ArrayList<Object>();
+                allItems.addAll(calendarEventObjectArray);
+                allItems.addAll(hourEventObjectArray);
+                allItems.addAll(checklistEventObjectArray);
+
+                EventAggregatorManager.setItems(allItems);
 
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();
@@ -109,10 +116,18 @@ public class HourEventViewer extends AppCompatActivity {
                         HourEventManager.calendars.get(i).setPosition(i-1);
                     }
                 }
-
-
                 HourEventManager.removeCalendarObject(position);
-                EventAggregatorManager.removeitem(position);
+
+                ArrayList<Object> calendarEventObjectArray = new ArrayList<Object>(CalendarEventManager.calendars);
+                ArrayList<Object> hourEventObjectArray = new ArrayList<Object>(HourEventManager.calendars);
+                ArrayList<Object> checklistEventObjectArray = new ArrayList<Object>(ChecklistEventManager.checklists);
+
+                ArrayList<Object> allItems = new ArrayList<Object>();
+                allItems.addAll(calendarEventObjectArray);
+                allItems.addAll(hourEventObjectArray);
+                allItems.addAll(checklistEventObjectArray);
+
+                EventAggregatorManager.setItems(allItems);
 
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();

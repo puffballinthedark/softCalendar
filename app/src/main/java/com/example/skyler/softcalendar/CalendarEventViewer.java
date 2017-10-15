@@ -18,6 +18,7 @@ import com.google.api.services.calendar.model.EventReminder;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CalendarEventViewer extends AppCompatActivity {
@@ -82,8 +83,16 @@ public class CalendarEventViewer extends AppCompatActivity {
                 CalendarEventManager.removeCalendarObject(position);
 
                 //TODO: this doesn't work either, you need to rethink your shit ok
-                EventAggregatorManager.removeitem(position);
+                ArrayList<Object> calendarEventObjectArray = new ArrayList<Object>(CalendarEventManager.calendars);
+                ArrayList<Object> hourEventObjectArray = new ArrayList<Object>(HourEventManager.calendars);
+                ArrayList<Object> checklistEventObjectArray = new ArrayList<Object>(ChecklistEventManager.checklists);
+                ArrayList<Object> allItems = new ArrayList<>();
 
+                allItems.addAll(calendarEventObjectArray);
+                allItems.addAll(hourEventObjectArray);
+                allItems.addAll(checklistEventObjectArray);
+
+                EventAggregatorManager.setItems(allItems);
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();
                 String calendarEvents = gson.toJson(CalendarEventManager.calendars);
@@ -101,15 +110,24 @@ public class CalendarEventViewer extends AppCompatActivity {
             public void onClick(View v){
                 backgroundTask calendarAdd = new backgroundTask();
                 calendarAdd.execute();
-                CalendarEventManager.removeCalendarObject(position);
-                EventAggregatorManager.removeitem(position);
 
                 if (CalendarEventManager.calendars.size()-1 != calendar.getPosition()) {
-                    for (int i = position; i < CalendarEventManager.calendars.size(); i++){
-                        CalendarEventManager.calendars.get(i).setPosition(i-1);
+                    for (int i = position; i < CalendarEventManager.calendars.size(); i++) {
+                        CalendarEventManager.calendars.get(i).setPosition(i - 1);
                     }
                 }
+                CalendarEventManager.removeCalendarObject(position);
 
+                ArrayList<Object> calendarEventObjectArray = new ArrayList<Object>(CalendarEventManager.calendars);
+                ArrayList<Object> hourEventObjectArray = new ArrayList<Object>(HourEventManager.calendars);
+                ArrayList<Object> checklistEventObjectArray = new ArrayList<Object>(ChecklistEventManager.checklists);
+                ArrayList<Object> allItems = new ArrayList<Object>();
+
+                allItems.addAll(calendarEventObjectArray);
+                allItems.addAll(hourEventObjectArray);
+                allItems.addAll(checklistEventObjectArray);
+
+                EventAggregatorManager.setItems(allItems);
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();
                 String calendarEvents = gson.toJson(CalendarEventManager.calendars);
