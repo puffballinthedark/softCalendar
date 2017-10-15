@@ -72,7 +72,16 @@ public class CalendarEventViewer extends AppCompatActivity {
       Button delete = (Button) findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
+
+                if (CalendarEventManager.calendars.size()-1 != calendar.getPosition()) {
+                    for (int i = position; i < CalendarEventManager.calendars.size(); i++){
+                        CalendarEventManager.calendars.get(i).setPosition(i-1);
+                    }
+                }
+
                 CalendarEventManager.removeCalendarObject(position);
+
+                //TODO: this doesn't work either, you need to rethink your shit ok
                 EventAggregatorManager.removeitem(position);
 
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
@@ -94,6 +103,12 @@ public class CalendarEventViewer extends AppCompatActivity {
                 calendarAdd.execute();
                 CalendarEventManager.removeCalendarObject(position);
                 EventAggregatorManager.removeitem(position);
+
+                if (CalendarEventManager.calendars.size()-1 != calendar.getPosition()) {
+                    for (int i = position; i < CalendarEventManager.calendars.size(); i++){
+                        CalendarEventManager.calendars.get(i).setPosition(i-1);
+                    }
+                }
 
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();

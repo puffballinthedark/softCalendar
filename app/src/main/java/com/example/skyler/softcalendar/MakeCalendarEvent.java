@@ -194,9 +194,9 @@ public class MakeCalendarEvent extends AppCompatActivity implements View.OnClick
             calendar.setEnd(DateTime.parseRfc3339(EndDate + EndTime));
             CalendarEventManager.addCalendarObject(calendar);
             EventAggregatorManager.additem(calendar);
-            //TODO: this is also where you write to the file;
-
             calendar.setPosition(CalendarEventManager.calendars.size()-1);
+
+            //TODO: this is also where you write to the file;
 
             SharedPreferences.Editor ed = MainActivity.EventData.edit();
             Gson gson = new Gson();

@@ -88,7 +88,7 @@ public class MainFormElementsAadapter extends RecyclerView.Adapter<MainFormEleme
     public int getItemCount(){
         return mDataSet.size();
     }
-    
+
     private void goToCalendarEventViewer (int position){
         Intent intent = new Intent(mContext,CalendarEventViewer.class);
         intent.putExtra("position", position);

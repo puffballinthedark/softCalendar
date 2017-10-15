@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.skyler.softcalendar.uiredo.calendarEventsForm;
 import com.example.skyler.softcalendar.uiredo.hourEventsForm;
+import com.google.api.services.calendar.model.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
@@ -68,19 +69,29 @@ public class HourEventViewer extends AppCompatActivity {
         Button delete = (Button) findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                HourEventManager.removeCalendarObject(position);
-                EventAggregatorManager.removeitem(position);
 
+                if (HourEventManager.calendars.size()-1 != calendar.getPosition()) {
+                    for (int i = position; i < HourEventManager.calendars.size(); i++){
+                        HourEventManager.calendars.get(i).setPosition(i-1);
+                    }
+                }
+                HourEventManager.removeCalendarObject(position);
+
+                //TODO: this doesn't work.
+                //it removes the item at the position it is in in the hourEventManger calendar.
+                //that means jack shit, it has to remove the actual item in the eventAggregator.
+                EventAggregatorManager.removeitem(position);
 
                 SharedPreferences.Editor ed = MainActivity.EventData.edit();
                 Gson gson = new Gson();
                 String hourEvents = gson.toJson(HourEventManager.calendars);
                 String aggregatedEvents = gson.toJson(EventAggregatorManager.items);
 
+
+
                 ed.putString("SavedHourEvents", hourEvents);
                 ed.putString("SavedAggregatedEvents", aggregatedEvents);
                 ed.apply();
-
 
                 goback();
 
@@ -92,6 +103,13 @@ public class HourEventViewer extends AppCompatActivity {
             public void onClick(View v){
                 HourEventViewer.backgroundTask calendarAdd = new HourEventViewer.backgroundTask();
                 calendarAdd.execute();
+
+                if (HourEventManager.calendars.size()-1 != calendar.getPosition()) {
+                    for (int i = position; i < HourEventManager.calendars.size(); i++){
+                        HourEventManager.calendars.get(i).setPosition(i-1);
+                    }
+                }
+
 
                 HourEventManager.removeCalendarObject(position);
                 EventAggregatorManager.removeitem(position);
